@@ -1,0 +1,114 @@
+{% extends "layout_workforce.html" %}
+
+
+{% block pageTitle %}
+Dashboard
+{% endblock %}
+
+{% block beforeContent %}
+<div class="govuk-breadcrumbs ">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">All regions</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">NPS South Central Division</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="team-view">Hampshire South West</a>
+    </li>
+  </ol>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <span class="govuk-caption-xl">Hampshire South West</span>
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">Southampton Team 1</h1> 
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <nav class="moj-sub-navigation" aria-label="Sub navigation">
+
+      <ul class="moj-sub-navigation__list">
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link" href="team-view">Overview</a>
+        </li>
+
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state" aria-current="page" href="#"><span id="notifications" class="moj-notification-badge">6</span> Unallocated cases</a>
+        </li>
+      </ul>
+    </nav>
+    
+  </div>
+</div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h2 class="govuk-heading-l">Unallocated cases</h2>
+
+
+<table class="govuk-table govuk-table-xl">
+  
+  
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+    
+      <th scope="col" class="govuk-table__header" aria-sort="none">Service user</th>
+    
+      <th scope="col" class="govuk-table__header" aria-sort="none">CRN</th>
+
+      <th scope="col" class="govuk-table__header" aria-sort="none">Postcode</th>
+    
+      <th scope="col" class="govuk-table__header" aria-sort="none">Probation status</th>
+    
+      <th scope="col" class="govuk-table__header" aria-sort="none">Offence</th>
+    
+      <th scope="col" class="govuk-table__header" aria-sort="ascending">Tier</th>
+    
+      <th scope="col" class="govuk-table__header" aria-sort="none">Previous OM</th>
+
+      <th scope="col" class="govuk-table__header" aria-sort="none">Induction date</th>
+
+      <th scope="col" class="govuk-table__header" aria-sort="none">Action</th>
+
+</tr>
+  </thead>
+  
+  <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="#1">Dylan Adam Armstrong</a></td>
+          <td class="govuk-table__cell">J681101</td>
+          <td class="govuk-table__cell">SE10 9GB</td>
+          <td class="govuk-table__cell">Previously known <span style="display: block; color: #626a6e; font-size: 16px;">Order ended 24 Nov 2016</span></td>
+          <td class="govuk-table__cell">Common assault and battery</td>
+          <td class="govuk-table__cell">B2</td>
+          <td class="govuk-table__cell">Alan Paine</td>
+          <td class="govuk-table__cell">12 Apr 2021</td>
+          <td class="govuk-table__cell">
+            <ul>
+              <li><a href="">Reject</a></li>
+              <li><a href="">Allocate</a></li>
+            </ul>
+          </td>
+
+          
+        </tr>
+        
+        
+  </tbody>
+</table>
+
+
+    
+  </div>
+</div>
+{% endblock %}
