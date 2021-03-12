@@ -8,6 +8,6 @@ const routesAllocations0 = require('./routesAllocations0')
 router.use('/allocations/0', routesAllocations0)
 
 // Call in routes file from routes folder to keep routes.js cleaner
-router.use('/', require('./routes/test.js'))
+router.use('/v3', require('./routes/v3.js'))
 
 module.exports = router

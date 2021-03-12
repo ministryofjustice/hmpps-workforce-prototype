@@ -1,0 +1,86 @@
+{% extends "layout_workforce.html" %}
+
+
+{% block pageTitle %}
+Allocate case | Southampton Team 1 | Workforce planning
+{% endblock %}
+
+{% block beforeContent %}
+<div class="govuk-breadcrumbs">
+  <a href="unallocated-cases" class="govuk-back-link govuk-body">Back to unallocated cases</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">Review and allocate case</h1> 
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <section class="key-details-bar" style="margin-bottom: 50px;" aria-label="Key details">
+      <div class="key-details-bar__key-details">
+        <div class="key-details-bar__top-block">
+          <span class="govuk-visually-hidden">Name:</span>
+          <span class="key-details-bar__name govuk-!-margin-right-6">Andrei Edwards</span>
+          <span class="govuk-body key-details-bar_divider"><strong>CRN:</strong> DX1234FF</span><span class="govuk-body"><strong>PNC:</strong> A1234560FF</span>
+          <span class="key-details-bar__nino"></span>
+          <span class="govuk-visually-hidden">Status from nDelius:</span>
+          <span class="key-details-bar__status">Current offender</span>
+          <span class="govuk-visually-hidden">Status from nDelius:</span>
+          <span class="key-details-bar__status govuk-!-margin-right-2">Medium Risk of Serious Harm</span>
+        </div>
+        <div class="key-details-bar__bottom-block">
+          <span class="govuk-body"><strong>Probation status:</strong> Current</span>
+          <span class="govuk-body"><strong>Date of birth:</strong> 01 Feb 1992</span>
+          <p class="govuk-body govuk-!-margin-0 app-!-float-right">
+            <a class="govuk-link govuk-link--no-visited-state govuk-link--text-colour" href="/cases/details/9168463">View
+                case details</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <h3 class="govuk-heading-l">Available officers</h3>
+    <table class="govuk-table govuk-table-xl" data-module="moj-sortable-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header" aria-sort="Ascending">Name</th>
+          <th scope="col" class="govuk-table__header" aria-sort="none">Grade</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none">Capacity</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none">Allocations in past 7 days</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none">Community cases</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none">Custody cases</th>
+          
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell"><a href="officer-view">Faraz Haynes</a></td>
+        <td class="govuk-table__cell" data-sort-value="Probation Officer">
+        <div class="tooltip">PO<span class="tooltiptext">Probation Officer</span></div></td>
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="88">88%</td>
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="32">2</td>
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="32">32</td>
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="32">8</td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell"><a href="officer-view-alt">Margaret Dawson</a></td>
+        <td class="govuk-table__cell" data-sort-value="Probation Service Officer">
+          <div class="tooltip">PSO<span class="tooltiptext">Probation Service Officer</span></div></td>
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value=74>74%</td>
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="22">18</td>
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="22">22</td>
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="32">1</td>
+      </tr>
+      
+      </tbody>
+    </table> 
+
+  </div>
+</div>
+{% endblock %}
