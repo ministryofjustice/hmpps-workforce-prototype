@@ -147,3 +147,17 @@
   top: auto;
   width: 1px;
 }
+
+//* Reposition small radios to flow in table layout */
+.govuk-radios--small {
+
+  .govuk-radios__label:before {
+    top: 0;
+    left: 17px;
+  }
+
+  .govuk-radios__label:after {
+    top: 7px;
+    left: 24px;
+  }
+}
