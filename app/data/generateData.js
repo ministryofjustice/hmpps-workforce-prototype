@@ -1,64 +1,71 @@
-const { probationPractitioners, serviceUserTemplates, postCodes, forenames, surnames, referenceDate } = require('../views/allocations/0/data_templates.json')
+const moment = require("moment")
+const { probationPractitionerTemplates } = require('./probation_practitioner_templates.json')
+const { referenceDate, serviceUserTemplates, forenames, surnames, postCodes } = require('./service_user_templates.json')
+const tierConversion = require('./tier_conversion.json')
+const tierPoints = require('./points_constants.json')
+const tierKeys = Object.keys(tierConversion)
 
-let serviceUserIndex = 0
-const getServiceUserIndex = () => {
-  const currentServiceUserIndex = serviceUserIndex
-  serviceUserIndex ++
-  return currentServiceUserIndex
+let uniqueCount = 0
+const getUnique = () => uniqueCount++
+
+const updateServiceUserDates = (serviceUser, timeOffsetMilliseconds) => {
+  serviceUser.sentenceStart = moment(new Date(serviceUser.sentenceStart)).add(timeOffsetMilliseconds, 'ms')
+  serviceUser.sentenceEnd = moment(new Date(serviceUser.sentenceEnd)).add(timeOffsetMilliseconds, 'ms')
+  serviceUser.DOB = moment(new Date(serviceUser.DOB)).add(timeOffsetMilliseconds, 'ms')
 }
 
-const generateServiceUser = (dates, currentOM = null) => {
-  const previousOM = Math.random() > 0.8 ? probationPractitioners[Math.floor(probationPractitioners.length*Math.random())].id :''
-  const index = getServiceUserIndex()
-  const templateIndex = index % serviceUserTemplates.length
-  return { 
-    name: `${forenames[index%forenames.length]} ${surnames[index%surnames.length]}`, 
-    postcode: postCodes[index%postCodes.length], 
-    crn: `J${678911 + (index*3)}`,
-    pnc: `2012/${123100000+(index*131)}F`,
-    template: serviceUserTemplates[templateIndex],
-    dates: dates[templateIndex],
-    currentOM: currentOM ? currentOM : '',
-    previousOM: previousOM != currentOM ? previousOM : '',
+const updateDates = () => {
+  const timeOffsetMilliseconds = moment().diff(moment(new Date (referenceDate)))
+  for(let serviceUserKey in serviceUserTemplates){
+    const serviceUser = serviceUserTemplates[serviceUserKey]
+    Array.isArray(serviceUser) ? serviceUser.forEach(su => updateServiceUserDates(su, timeOffsetMilliseconds) ) : updateServiceUserDates(serviceUser, timeOffsetMilliseconds)
   }
+  probationPractitionerTemplates.forEach(probationPractitioner => probationPractitioner.lastAllocated = moment(new Date(probationPractitioner.lastAllocated)).add(timeOffsetMilliseconds, 'ms'))
+}
+updateDates()
+
+const generateServiceUsers = (OM_Key, practitionerTemplate) => {
+  const serviceUsers = new Array()
+  tierKeys.filter(key => practitionerTemplate[key]).forEach(
+    key => {
+      for(let index=0; index<practitionerTemplate[key]; index++){
+        const unique = getUnique()
+        const template = serviceUserTemplates[key]?.length > 0 ? serviceUserTemplates[key][Math.floor(Math.random() * serviceUserTemplates[key].length)] : serviceUserTemplates['blank']
+        serviceUsers.push(Object.assign(template, 
+          { 
+            tier: tierConversion[key].tier,
+            receivingFrom: tierConversion[key].receivingFrom,
+            name: `${forenames[unique%forenames.length]} ${surnames[unique%surnames.length]}`, 
+            postcode: postCodes[unique%postCodes.length], 
+            crn: `J${678911 + (unique*3)}`,
+            pnc: `2012/${123100000+(unique*131)}F`,
+          }))
+      }
+    }
+  )
+  return serviceUsers
 }
 
-const generateNewServiceUsers = (dates, numberOfNewServiceUsers) => {
-  return [...new Array(numberOfNewServiceUsers)].map(() => generateServiceUser(dates))
+const calculatePointsUsed = probationPractitioner => tierKeys.reduce( (accumulator, key) =>
+    (probationPractitioner?.[key] ? tierPoints[key] * probationPractitioner[key] : 0) + accumulator, 0 )
+
+const generateProbationPractitioner = (index, teamCode, OM_KeyPrefix) => {
+  const practitionerTemplate = probationPractitionerTemplates[index % probationPractitionerTemplates.length]
+  const OM_Key = OM_KeyPrefix+String(index).padStart(2, '0')
+  const serviceUsers = generateServiceUsers(OM_Key, practitionerTemplate)
+  const pointsUsed = calculatePointsUsed(practitionerTemplate)
+  return Object.assign(practitionerTemplate, 
+    { 
+      Team_Code: teamCode, 
+      OM_Key,
+      serviceUsers,
+      pointsUsed,
+      pointsAvailable: 2176,
+    }
+  )
 }
 
-const generateAllocatedServiceUsers = (dates, { noOfCases, id }) => {
-  return [...new Array(noOfCases)].map(() => generateServiceUser(dates, id))
-}
+const generateTeam = (noOfProbationPractitioners, teamCode, OM_KeyPrefix) => 
+  [ ...new Array(noOfProbationPractitioners)].map( (_currentValue, index) => generateProbationPractitioner(index, teamCode, OM_KeyPrefix) )
 
-const updateDate = (timeOffSet, timeStamp, param) => {
-  const newDate = new Date(new Date(timeStamp).getTime()+timeOffSet)
-  return { [`${ param }Raw`]: newDate, [param]: `${ newDate.getDate() } ${newDate.toLocaleDateString('en-GB', { month: "short" }) } ${ newDate.getFullYear() }` }
-}
-
-const createDates = (timeOffSet, templateDates) => templateDates.map(({ sentenceStart, sentenceEnd }) => (
-  { ...updateDate(timeOffSet, sentenceStart, 'sentenceStart'), ...updateDate(timeOffSet, sentenceEnd, 'sentenceEnd') }
-))
-
-const generateAllServiceUsers = (dates, newDates, numberOfNewServiceUsers = 7) => probationPractitioners
-  .flatMap(probationPractitioner => generateAllocatedServiceUsers(dates, probationPractitioner))
-  .concat(generateNewServiceUsers(newDates, numberOfNewServiceUsers))
-
-const generateServiceUsers = (referenceDateMilliseconds, timeOffSet) => {
-  const addDays = days => referenceDateMilliseconds + (days * 86400000)
-  const rawNewDates = serviceUserTemplates.map(({ sentenceEnd }, index) => ({ sentenceEnd, sentenceStart: addDays(Math.ceil((index/serviceUserTemplates.length)*5)) }))
-  const newDates = createDates(timeOffSet, rawNewDates)
-  newDates.forEach(newDate => newDate.sla = Math.round((new Date(newDate.sentenceStart).getTime()-(referenceDateMilliseconds+timeOffSet))/86400000) )
-  return generateAllServiceUsers(createDates(timeOffSet, serviceUserTemplates), newDates)
-}
-
-const generateData = () => {
-  const referenceDateMilliseconds = new Date(referenceDate).getTime()
-  const timeOffSet = Date.now() - referenceDateMilliseconds
-  return { 
-    serviceUsers: generateServiceUsers(referenceDateMilliseconds, timeOffSet), 
-    probationPractitioners: probationPractitioners.map(probationPractitioner => ({ ...probationPractitioner, ...updateDate(timeOffSet, probationPractitioner.lastAllocated, 'lastAllocated') }))
-  }
-}
-
-module.exports = generateData
+module.exports = { generateTeam, generateServiceUsers, calculatePointsUsed }

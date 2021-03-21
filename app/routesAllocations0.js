@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const { body, validationResult } = require('express-validator')
-const generateData = require('./data/generateData')
+const generateData = require('./views/allocations/0/generateData')
 
 const today = Date.now()
 
