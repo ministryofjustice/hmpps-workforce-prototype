@@ -19,6 +19,7 @@ $govuk-assets-path: '/govuk/assets/';
 @import "../../views/allocations/0/partial/key-details-bar/template";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
-@import "hmpps/pics";
+@import "hmpps/pics"; // wholesale styles from PICS team service
 @import "hmpps/capacity";
-@import "hmpps/sirius";
+@import "hmpps/sirius"; // OPG styles for service user due dates
+@import "hmpps/risk"; // recreation of Figma designs from ARN team
