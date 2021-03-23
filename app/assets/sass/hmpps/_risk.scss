@@ -3,6 +3,12 @@
   border: 2px solid govuk-colour('orange');
 }
 
+.moj-tag--light-grey {
+  background-color: govuk-colour('light-grey');
+  border: 2px solid govuk-colour('light-grey');
+  color: $govuk-secondary-text-colour;
+}
+
 .hmpps-risk-profile {
 
   .risk-score {
