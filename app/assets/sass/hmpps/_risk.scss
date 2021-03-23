@@ -1,0 +1,31 @@
+.moj-tag--orange {
+  background-color: govuk-colour('orange');
+  border: 2px solid govuk-colour('orange');
+}
+
+.hmpps-risk-profile {
+
+  .risk-score {
+    display: block;
+    font-weight: 800;
+    margin-top: 10px;
+  }
+
+  .low-risk {
+    color: govuk-colour('green');
+  }
+
+  .medium-risk {
+    color: govuk-colour('orange');
+  }
+
+  .high-risk {
+    color: govuk-colour('red');
+  }
+}
+
+.details-xl {
+  .govuk-details__text {
+    max-width: 100%;
+  }
+}
