@@ -1,0 +1,108 @@
+{#- We can't mount GOV.UK Frontend's assets at root as it's done automatically by the extensions framework. -#}
+{%- set assetPath = '/govuk/assets' -%}
+
+{% extends "govuk/template.njk" %}
+
+{% from "govuk/components/accordion/macro.njk"        import govukAccordion %}
+{% from "govuk/components/back-link/macro.njk"        import govukBackLink %}
+{% from "govuk/components/breadcrumbs/macro.njk"      import govukBreadcrumbs %}
+{% from "govuk/components/button/macro.njk"           import govukButton %}
+{% from "govuk/components/character-count/macro.njk"  import govukCharacterCount %}
+{% from "govuk/components/checkboxes/macro.njk"       import govukCheckboxes %}
+{% from "govuk/components/date-input/macro.njk"       import govukDateInput %}
+{% from "govuk/components/details/macro.njk"          import govukDetails %}
+{% from "govuk/components/error-message/macro.njk"    import govukErrorMessage %}
+{% from "govuk/components/error-summary/macro.njk"    import govukErrorSummary %}
+{% from "govuk/components/fieldset/macro.njk"         import govukFieldset %}
+{% from "govuk/components/file-upload/macro.njk"      import govukFileUpload %}
+{% from "govuk/components/input/macro.njk"            import govukInput %}
+{% from "govuk/components/inset-text/macro.njk"       import govukInsetText %}
+{% from "govuk/components/panel/macro.njk"            import govukPanel %}
+{% from "govuk/components/phase-banner/macro.njk"     import govukPhaseBanner %}
+{% from "govuk/components/radios/macro.njk"           import govukRadios %}
+{% from "govuk/components/select/macro.njk"           import govukSelect %}
+{% from "govuk/components/skip-link/macro.njk"        import govukSkipLink %}
+{% from "govuk/components/summary-list/macro.njk"     import govukSummaryList %}
+{% from "govuk/components/table/macro.njk"            import govukTable %}
+{% from "govuk/components/tabs/macro.njk"             import govukTabs %}
+{% from "govuk/components/tag/macro.njk"              import govukTag %}
+{% from "govuk/components/textarea/macro.njk"         import govukTextarea %}
+{% from "govuk/components/warning-text/macro.njk"     import govukWarningText %}
+
+{% from "moj/components/banner/macro.njk" import mojBanner %}
+{% from "moj/components/header/macro.njk" import mojHeader %}
+{% from "moj/components/badge/macro.njk" import mojBadge %}
+{% from "moj/components/pagination/macro.njk" import mojPagination %}
+
+{% block head %}
+  {% include "includes/head.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {% include "includes/cookie-banner.html" %}
+  {# Set serviceName in config.js. #} 
+
+  {% include "includes/su-moj-header.html" %}
+  
+<section class="key-details-bar" style="margin: 0 0 50px 0; padding: 0 15px;" aria-label="Key details">
+      <div class="key-details-bar__key-details">
+        <div class="key-details-bar__top-block">
+          <span class="key-details-bar__status" style="float: none; margin-right: 6px;">C1</span>
+          <span class="govuk-visually-hidden">Name:</span>
+          <span class="key-details-bar__name govuk-!-margin-right-6">Dylan Adam Armstrong</span>
+          <span class="govuk-body key-details-bar_divider"><strong>CRN:</strong> DX1234FF</span>
+          <span class="govuk-visually-hidden">Status from nDelius:</span>
+          <span class="key-details-bar__status">Current offender</span>
+          <!--<span class="govuk-visually-hidden">Status from nDelius:</span>
+          <span class="key-details-bar__status govuk-!-margin-right-2">Low Risk of Serious Harm</span>
+        </div>-->
+        <div class="key-details-bar__bottom-block govuk-!-margin-bottom-6">
+          <span class="govuk-body key-details-bar_divider"><strong>Gender:</strong> Male</span>
+          <!--<span class="govuk-body key-details-bar_divider"><strong>Probation status:</strong> Current</span>-->
+          <span class="govuk-body"><strong>Date of birth:</strong> 01 Feb 1992 (19 years)</span>
+        </div>
+        <h3 class="govuk-heading-m">Offence</h3>
+        <p><strong>Drive motor vehicle when alcohol level above limit</strong></p>
+        <p>Contrary to section 5(1)(a) of the Road Traffic Act 1988 and schedule 2 to the Road Traffic Offenders Act 1988.</p>
+        <p>On Friday 10th June at Green Avenue, Sheffield drove a motor vehicle namely BMW registration AB12 ZZZ on a road namely Green Avenue, Sheffield, after consuming so much alcohol that the proportion of it in your breath, namely 117 microgrammes of alcohol in 100 millilitres of breath, exceeded the prescribed limit.</p>
+        <button class="govuk-button govuk-button--secondary" data-module="govuk-button" style="color: black;">
+          View full details on nDelius
+        </button>
+      </div>
+    </section>
+
+
+{% endblock %}
+
+{% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %}
+
+{% if useAutoStoreData %}
+  {% block footer %}
+    {{ govukFooter({
+      meta: {
+        items: [
+          {
+            href: "https://govuk-prototype-kit.herokuapp.com/",
+            text: "GOV.UK Prototype Kit " + releaseVersion
+          },
+          {
+            href: "/prototype-admin/clear-data",
+            text: "Clear data"
+          }
+        ]
+      }
+    }) }}
+  {% endblock %}
+{% endif %}
+
+{% block bodyEnd %}
+  {% block scripts %}
+    {% include "includes/scripts.html" %}
+    {% block pageScripts %}{% endblock %}
+  {% endblock %}
+  <!-- GOV.UK Prototype Kit {{releaseVersion}} -->
+{% endblock %}
