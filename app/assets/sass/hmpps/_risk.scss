@@ -35,3 +35,14 @@
     max-width: 100%;
   }
 }
+
+
+// Service user MOJ header styling
+.app-organisation-nav-title {
+  float: right;
+  padding-top: 19px;
+}
+
+.moj-primary-navigation__link[aria-current]:before {
+  background-color: #5a5c92;
+}
