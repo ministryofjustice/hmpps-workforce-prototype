@@ -7,18 +7,25 @@ Allocate case | Southampton Team 1 | Workforce planning
 
 {% block beforeContent %}
 <div class="govuk-breadcrumbs">
-  <ol class="govuk-breadcrumbs__list">
-    <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link govuk-back-link" href="unallocated-cases">Back to unallocated cases</a>
-    </li>
-  </ol>
+  <a href="unallocated-cases" class="govuk-back-link govuk-body">Back to unallocated cases</a>
 </div>
 {% endblock %}
 
 {% block content %}
+<div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+  <h2 class="govuk-error-summary__title" id="error-summary-title">
+    There is a problem
+  </h2>
+  <div class="govuk-error-summary__body">
+    <ul class="govuk-list govuk-error-summary__list">
+      <li>
+        <a href="#allocation-error">You have not selected an officer for this case</a>
+      </li>
+    </ul>
+  </div>
+</div>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    <span class="govuk-caption-xl">Southampton Team 1</span>
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">Review and allocate case</h1> 
   </div>
 </div>
@@ -38,29 +45,30 @@ Allocate case | Southampton Team 1 | Workforce planning
           <span class="govuk-visually-hidden">Status from nDelius:</span>
           <span class="key-details-bar__status govuk-!-margin-right-2">Low Risk of Serious Harm</span>
         </div>
-        <div class="key-details-bar__bottom-block govuk-!-margin-bottom-6">
+        <div class="key-details-bar__bottom-block">
           <span class="govuk-body key-details-bar_divider"><strong>Gender:</strong> Male</span>
           <!--<span class="govuk-body key-details-bar_divider"><strong>Probation status:</strong> Current</span>-->
           <span class="govuk-body"><strong>Date of birth:</strong> 01 Feb 1992 (19 years)</span>
         </div>
-        <h3 class="govuk-heading-m">Offence</h3>
-        <p><strong>Drive motor vehicle when alcohol level above limit</strong></p>
-        <p>Contrary to section 5(1)(a) of the Road Traffic Act 1988 and schedule 2 to the Road Traffic Offenders Act 1988.</p>
-        <p>On Friday 10th June at Green Avenue, Sheffield drove a motor vehicle namely BMW registration AB12 ZZZ on a road namely Green Avenue, Sheffield, after consuming so much alcohol that the proportion of it in your breath, namely 117 microgrammes of alcohol in 100 millilitres of breath, exceeded the prescribed limit.</p>
-        <button class="govuk-button govuk-button--secondary" data-module="govuk-button" style="color: black;">
-          View full details on nDelius
-        </button>
       </div>
+<br><br>
+<h3 class="govuk-heading-m" style="color: white;">Offences</h3>
+<p style="color: white;"><strong>Drive motor vehicle when alcohol level above limit</strong></p>
+<p style="color: white;">Contrary to section 5(1)(a) of the Road Traffic Act 1988 and schedule 2 to the Road Traffic Offenders Act 1988.</p>
+<p style="color: white;">On Friday 10th June at Green Avenue, Sheffield drove a motor vehicle namely BMW registration AB12 ZZZ on a road namely Green Avenue, Sheffield, after consuming so much alcohol that the proportion of it in your breath, namely 117 microgrammes of alcohol in 100 millilitres of breath, exceeded the prescribed limit.</p>
+<button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+  View full details on nDelius
+</button>
+
     </section>
-  </div>
-</div>
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
+    <form action="/allocate-handler" method="post" novalidate>
+<div class="govuk-form-group govuk-form-group--error">
 
-    <!--<form action="/allocate-handler" method="post" novalidate>-->
-    <form action="end" method="post" novalidate>
       <h3 class="govuk-heading-l">Available officers</h3>
+      <span id="allocation-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> Select an officer to be assigned
+    </span>
       <table class="govuk-table govuk-table-xl" data-module="moj-sortable-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
@@ -86,7 +94,7 @@ Allocate case | Southampton Team 1 | Workforce planning
           <td class="govuk-table__cell">
             <div class="govuk-radios govuk-radios--small">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="changed-name" name="changed-name" type="radio" value="month">
+                <input class="govuk-radios__input" id="changed-name" name="changed-name" type="radio" value="yes">
                 <label class="govuk-label govuk-radios__label" for="changed-name"></label>
               </div>
           </div>
@@ -104,7 +112,7 @@ Allocate case | Southampton Team 1 | Workforce planning
           <td class="govuk-table__cell">
             <div class="govuk-radios govuk-radios--small">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="changed-name-2" name="changed-name" type="radio" value="year">
+                <input class="govuk-radios__input" id="changed-name-2" name="changed-name" type="radio" value="yes">
                 <label class="govuk-label govuk-radios__label" for="changed-name-2"></label>
               </div>
             </div>
@@ -113,7 +121,7 @@ Allocate case | Southampton Team 1 | Workforce planning
         
         </tbody>
       </table> 
-
+</div>
       <button class="govuk-button" data-module="govuk-button" style="float: left; margin-right: 30px;">
         Allocate to selected officer
       </button>
@@ -125,13 +133,4 @@ Allocate case | Southampton Team 1 | Workforce planning
     </form>
   </div>
 </div>
-
-<div class="govuk-breadcrumbs">
-  <ol class="govuk-breadcrumbs__list">
-    <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link govuk-back-link" href="unallocated-cases">Back to unallocated cases</a>
-    </li>
-  </ol>
-</div>
-
 {% endblock %}

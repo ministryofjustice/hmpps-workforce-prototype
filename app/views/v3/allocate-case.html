@@ -1,60 +1,88 @@
-{% extends "layout_workforce.html" %}
+{% extends "layout_service-user.html" %}
 
 
 {% block pageTitle %}
 Allocate case | Southampton Team 1 | Workforce planning
 {% endblock %}
 
-{% block beforeContent %}
-<div class="govuk-breadcrumbs">
-  <ol class="govuk-breadcrumbs__list">
-    <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link govuk-back-link" href="unallocated-cases">Back to unallocated cases</a>
-    </li>
-  </ol>
-</div>
-{% endblock %}
-
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    <span class="govuk-caption-xl">Southampton Team 1</span>
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">Review and allocate case</h1> 
+    <h1 class="govuk-heading-l">Dylan's risk profile</h3>
   </div>
 </div>
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
-
-    <section class="key-details-bar" style="margin: 50px 0; padding: 0 15px;" aria-label="Key details">
-      <div class="key-details-bar__key-details">
-        <div class="key-details-bar__top-block">
-          <span class="key-details-bar__status" style="float: none; margin-right: 6px;">C1</span>
-          <span class="govuk-visually-hidden">Name:</span>
-          <span class="key-details-bar__name govuk-!-margin-right-6">Dylan Adam Armstrong</span>
-          <span class="govuk-body key-details-bar_divider"><strong>CRN:</strong> DX1234FF</span>
-          <span class="govuk-visually-hidden">Status from nDelius:</span>
-          <span class="key-details-bar__status">Current offender</span>
-          <span class="govuk-visually-hidden">Status from nDelius:</span>
-          <span class="key-details-bar__status govuk-!-margin-right-2">Low Risk of Serious Harm</span>
-        </div>
-        <div class="key-details-bar__bottom-block govuk-!-margin-bottom-6">
-          <span class="govuk-body key-details-bar_divider"><strong>Gender:</strong> Male</span>
-          <!--<span class="govuk-body key-details-bar_divider"><strong>Probation status:</strong> Current</span>-->
-          <span class="govuk-body"><strong>Date of birth:</strong> 01 Feb 1992 (19 years)</span>
-        </div>
-        <h3 class="govuk-heading-m">Offence</h3>
-        <p><strong>Drive motor vehicle when alcohol level above limit</strong></p>
-        <p>Contrary to section 5(1)(a) of the Road Traffic Act 1988 and schedule 2 to the Road Traffic Offenders Act 1988.</p>
-        <p>On Friday 10th June at Green Avenue, Sheffield drove a motor vehicle namely BMW registration AB12 ZZZ on a road namely Green Avenue, Sheffield, after consuming so much alcohol that the proportion of it in your breath, namely 117 microgrammes of alcohol in 100 millilitres of breath, exceeded the prescribed limit.</p>
-        <button class="govuk-button govuk-button--secondary" data-module="govuk-button" style="color: black;">
-          View full details on nDelius
-        </button>
-      </div>
+  <div class="govuk-grid-column-one-half">
+    
+    <section class="hmpps-risk-profile">
+      <p>Risk to known adults, children, staff and/or the public.
+      <span class="govuk-!-font-size-36 risk-score high-risk">High</span>
+      <abbr title="Risk Of Serious Harm" class="govuk-caption-m">(ROSH)</abbr></p>
     </section>
+    <section class="hmpps-risk-profile">
+      <p>Likelihood of an offence within 2 years, leading to reconviction (proven reoffending).
+      <span class="govuk-!-font-size-36 risk-score high-risk">High (52%)</span>
+      <abbr title="Offender Group Reconviction Scale" class="govuk-caption-m">(OGRS3)</abbr></p>
+    </section>
+
+    <section class="hmpps-risk-profile">
+      <p>Committing any violent proven reoffence within 2 years.
+      <span class="govuk-!-font-size-36 risk-score low-risk">Low (12%)</span>
+      <abbr title="OASys violence predictor" class="govuk-caption-m">(OVP)</abbr></p>
+    </section>
+
+    <section class="hmpps-risk-profile">
+      <p>Likelihood of a seriously harmful re-offence within 2 years.
+      <span class="govuk-!-font-size-36 risk-score low-risk">Low (1.5%)</span>
+      <abbr title="Risk of Serious Recidivism" class="govuk-caption-m">(RSR)</abbr></p>
+    </section>   
+  </div>
+
+  <div class="govuk-grid-column-one-half">
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m">Those at risk</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Risk</th>
+          <th scope="col" class="govuk-table__header">Risk in custody</th>
+          <th scope="col" class="govuk-table__header">Risk in community</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Known adult</th>
+          <td class="govuk-table__cell"><span class="govuk-tag moj-tag--orange">medium</span></td>
+          <td class="govuk-table__cell"><span class="govuk-tag moj-tag--red">high</span></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Children</th>
+          <td class="govuk-table__cell"><span class="govuk-tag moj-tag--green">low</span></td>
+          <td class="govuk-table__cell"><span class="govuk-tag moj-tag--orange">medium</span></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Public</th>
+          <td class="govuk-table__cell"><span class="govuk-tag moj-tag--green">low</span></td>
+          <td class="govuk-table__cell"><span class="govuk-tag moj-tag--green">low</span></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Staff</th>
+          <td class="govuk-table__cell"><span class="govuk-tag moj-tag--green">low</span></td>
+          <td class="govuk-table__cell"><span class="govuk-tag moj-tag--green">low</span></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Prisoners</th>
+          <td class="govuk-table__cell"><span class="govuk-tag moj-tag--green">low</span></td>
+          <td class="govuk-table__cell"></td>
+        </tr>
+      </tbody>
+    </table>
+    
   </div>
 </div>
 
+
+<hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
