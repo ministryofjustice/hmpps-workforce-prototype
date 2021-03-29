@@ -46,3 +46,17 @@
 .moj-primary-navigation__link[aria-current]:before {
   background-color: #5a5c92;
 }
+
+.rosh-highlight {
+  border: solid 2px;
+  border-color: govuk-colour('red');
+  padding: 15px;
+}
+
+.rosh-span {
+  border-left-width: 0;
+  border-right-width: 0;
+  border-top-width: 0;
+  margin-right: -15px;
+  padding: 0;
+}
