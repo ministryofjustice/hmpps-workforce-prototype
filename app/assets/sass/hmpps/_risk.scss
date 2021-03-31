@@ -48,13 +48,17 @@
 }
 
 .rosh-highlight {
+  background-color: govuk-colour('light-grey');
   border: solid 2px;
-  border-color: govuk-colour('red');
+  border-color: govuk-colour('mid-grey');
+  border-radius: 10px;
   padding: 15px;
 }
 
 .rosh-span {
+  background-color: transparent;
   border-left-width: 0;
+  border-radius: 0;
   border-right-width: 0;
   border-top-width: 0;
   margin-right: -15px;
