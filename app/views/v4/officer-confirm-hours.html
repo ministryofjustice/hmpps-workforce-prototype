@@ -47,17 +47,17 @@ Faraz Haynes | Contracted hours | Workforce planning
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h2 class="govuk-heading-l">Contracted hours</h2>
-    <form action="officer-confirm-hours" method="post" novalidate>
-      <div class="govuk-form-group">
-        <h1 class="govuk-label-wrapper">
-          <label class="govuk-label govuk-label--s" for="event-name">
-        Change the contracted hours for Faraz Haynes</label>
-        </h1>
-        <input class="govuk-input govuk-input--width-4" id="contracted-hours" name="contracted-hours" type="number" value="{{ data['contracted-hours'] }}">
+    <p>Changing the contracted hours of Faraz Haynes to <strong>{{ data['contracted-hours'] }}</strong> will change their current capacity to <span style="color: #d4351c;">126%</span>. You may need to reallocate some of their caseload.</p>
+    <form action="officer-view" method="post" novalidate>
+      <input type="hidden" name="contracted-capacity" value="126">
+      <input type="hidden" name="contracted-colour" value="over-capacity">
+      <div class="govuk-button-group">
+        <button class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+
+        <a class="govuk-link govuk-link--no-visited-state" href="officer-view-contracted">Cancel</a>
       </div>
-      <button class="govuk-button" data-module="govuk-button">
-        Continue
-      </button>
     </form>
   </div>
 </div>
