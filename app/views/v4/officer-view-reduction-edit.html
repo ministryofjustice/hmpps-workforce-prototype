@@ -1,0 +1,103 @@
+{% extends "layout_workforce.html" %}
+
+
+{% block pageTitle %}
+Faraz Haynes | Reductions | Workforce planning
+{% endblock %}
+
+{% block beforeContent %}
+<div class="govuk-breadcrumbs">
+  <a href="team-view" class="govuk-back-link govuk-body">Back to team overview</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <span class="govuk-caption-xl">Southampton Team 1</span>
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">Faraz Haynes <span class="workforce-grade">Probation Officer</span></h1>    
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <nav class="moj-sub-navigation" aria-label="Sub navigation">
+
+      <ul class="moj-sub-navigation__list">
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state"  href="officer-view">Overview</a>
+        </li>
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="officer-view-cases">Active cases</a>
+        </li>
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="#3">Archived cases (on nDelius)</a>
+        </li>
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="officer-view-contracted">Contracted hours</a>
+        </li>
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state" aria-current="page" href="officer-view-reductions">Reductions</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-l">Reduction</h1>
+    <form action="officer-view-reductions" method="post" novalidate>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" role="group" aria-describedby="reduction-start-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h3 class="govuk-fieldset__heading">
+              Reduction start date
+            </h3>
+          </legend>
+
+          <div id="reduction-start-hint" class="govuk-hint">
+            For example, 12 11 2007
+          </div>
+          <div class="govuk-date-input" id="reduction-start">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="reduction-start-day">
+                  Day
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="reduction-start-day" name="reduction-start-day" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['reduction-start-day'] }}"></div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="reduction-start-month">
+                  Month
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="reduction-start-month" name="reduction-start-month" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['reduction-start-month'] }}"></div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="reduction-start-year">
+                  Year
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="reduction-start-year" name="reduction-start-year" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['reduction-start-year'] }}"></div>
+            </div>
+          </div>
+        </fieldset>
+      </div>      
+        
+      <button class="govuk-button" data-module="govuk-button">
+        Save changes
+      </button>
+    </form>
+
+  </div>
+</div>
+
+
+
+ 
+
+
+{% endblock %}

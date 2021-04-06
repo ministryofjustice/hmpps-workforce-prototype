@@ -52,8 +52,8 @@ Faraz Haynes | Overview | Workforce planning
     <div class="govuk-grid-row">
       
       <div class="govuk-grid-column-one-quarter">
-        <div class="card card-total-subset">
-          <span class="card__heading">88%</span>
+        <div class="card card-total-subset {{ data['contracted-colour'] }}">
+          <span class="card__heading">{{ data['contracted-capacity'] }}%</span>
           <p>capacity</p>
         </div>
       </div>
@@ -115,7 +115,7 @@ Faraz Haynes | Overview | Workforce planning
               Weekly hours
             </dt>
             <dd class="govuk-summary-list__value">
-              34.00
+              {{ data['contracted-hours'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link govuk-link--no-visited-state" href="officer-view-contracted">
