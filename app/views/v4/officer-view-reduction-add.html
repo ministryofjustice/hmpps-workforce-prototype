@@ -48,12 +48,12 @@ Faraz Haynes | Add reduction | Workforce planning
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <h1 class="govuk-heading-l govuk-!-padding-bottom-9">Add reduction</h1>
-    <form action="officer-view-reductions" method="post" novalidate>
+    <form action="officer-confirm-reduction-add" method="post" novalidate>
       <div class="govuk-form-group">
         <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="reduction-reasons">
           Reason for reduction
         </label></h1>
-        <select class="govuk-select" id="reduction-reasons" name="reduction-reasons">
+        <select class="govuk-select" id="new-reduction" name="new-reduction">
           <option value="unselected" selected>Select reason</option>
           <option value="Adoption Leave">Adoption Leave</option>
           <option value="Court Duty">Court Duty</option>
@@ -192,7 +192,7 @@ Faraz Haynes | Add reduction | Workforce planning
         <!--<div id="more-detail-hint" class="govuk-hint">
           assuming we'll need this later
         </div>-->
-        <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
+        <textarea class="govuk-textarea" id="new-more-detail" name="new-more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
       </div>
 
       <div class="govuk-button-group">
