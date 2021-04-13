@@ -34,10 +34,10 @@ Faraz Haynes | Contracted hours | Workforce planning
           <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="#3">Archived cases (on nDelius)</a>
         </li>
         <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link govuk-link--no-visited-state" aria-current="page" href="officer-view-contracted">Contracted hours</a>
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="officer-view-contracted">Contracted hours</a>
         </li>
         <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link govuk-link--no-visited-state"  href="officer-view-reductions">Reductions</a>
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state"  aria-current="page" href="officer-view-reductions">Reductions</a>
         </li>
       </ul>
     </nav>
@@ -52,21 +52,14 @@ Faraz Haynes | Contracted hours | Workforce planning
   <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
   <strong class="govuk-warning-text__text">
     <span class="govuk-warning-text__assistive">Warning</span>
-    Changing the contracted hours of Faraz Haynes to <strong>{{ data['contracted-hours'] }}</strong> will change their current capacity to <span style="color: #d4351c;">126%</span>. You may need to reallocate some of their caseload.
+    Deleting this reduction will change their capacity to 78%.
   </strong>
 </div>
-    
-    <form action="officer-view" method="post" novalidate>
-      <input type="hidden" name="contracted-capacity" value="126">
-      <input type="hidden" name="contracted-colour" value="over-capacity">
-      <div class="govuk-button-group">
-        <button class="govuk-button" data-module="govuk-button">
-          Continue
-        </button>
 
-        <a class="govuk-link govuk-link--no-visited-state" href="officer-view-contracted">Cancel</a>
-      </div>
-    </form>
+  <div class="govuk-button-group">
+    <a class="govuk-button" href="officer-view-reductions-delete-confirm">Continue</a>
+    <a class="govuk-link" href="officer-view-reductions">Cancel</a>
   </div>
+    
 </div>
 {% endblock %}
