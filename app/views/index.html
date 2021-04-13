@@ -23,10 +23,14 @@ Prototype | HMPPS | Manage a workforce
         <div class="moj-timeline__description">
           <p>Adding in reductions screens, iterating based on feedback from research in February, and accommodating techincal constraints.</p>
           <form action="/v4/team-view" method="post" novalidate>
+            <input type="hidden" name="reduction-hours" value="5.00">
             <input type="hidden" name="reduction-start-day" value="26">
             <input type="hidden" name="reduction-start-month" value="10">
             <input type="hidden" name="reduction-start-year" value="2020">
-            <input type="hidden" name="contracted-hours" value="34.00">
+            <input type="hidden" name="reduction-end-day" value="27">
+            <input type="hidden" name="reduction-end-month" value="10">
+            <input type="hidden" name="reduction-end-year" value="2030">
+            <input type="hidden" name="contracted-hours" value="37.00">
             <input type="hidden" name="contracted-capacity" value="88">
             <input type="hidden" name="contracted-colour" value="under-capacity">
             <button class="govuk-button" data-module="govuk-button">

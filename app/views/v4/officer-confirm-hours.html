@@ -47,7 +47,15 @@ Faraz Haynes | Contracted hours | Workforce planning
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h2 class="govuk-heading-l">Contracted hours</h2>
-    <p>Changing the contracted hours of Faraz Haynes to <strong>{{ data['contracted-hours'] }}</strong> will change their current capacity to <span style="color: #d4351c;">126%</span>. You may need to reallocate some of their caseload.</p>
+
+    <div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Warning</span>
+    Changing the contracted hours of Faraz Haynes to <strong>{{ data['contracted-hours'] }}</strong> will change their current capacity to <span style="color: #d4351c;">126%</span>. You may need to reallocate some of their caseload.
+  </strong>
+</div>
+    
     <form action="officer-view" method="post" novalidate>
       <input type="hidden" name="contracted-capacity" value="126">
       <input type="hidden" name="contracted-colour" value="over-capacity">
