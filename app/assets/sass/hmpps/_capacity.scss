@@ -169,3 +169,22 @@
     left: 24px;
   }
 }
+
+//* Confirmation banner thingy *//
+
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+.maw-confirmation {
+  @include govuk-responsive-padding(6);
+  @include govuk-responsive-margin(6, 'bottom');
+  border-left: solid 5px govuk-colour('turquoise');
+  background-color: #A0D6D1;
+
+  p {
+    margin: 0;
+  }
+
+}
+
