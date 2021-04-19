@@ -18,7 +18,7 @@ Farah Haynes | Overview | Workforce planning
       <a class="govuk-breadcrumbs__link" href="#">NPS South Central Division</a>
     </li>
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="team-view">Hampshire South West</a>
+      <a class="govuk-breadcrumbs__link" href="{{ versionUrl }}/team-view">Hampshire South West</a>
     </li>
   </ol>
 </div>
@@ -28,7 +28,8 @@ Farah Haynes | Overview | Workforce planning
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <span class="govuk-caption-xl">Southampton Team 1</span>
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">Faraz Haynes <span class="workforce-grade">Probation Officer</span></h1>    
+    {% set gradeDescriptions = {PO: 'Probation Officer', PSO: 'Probation Service Officer', TPO: 'Trainee Probation Officer', SPO: 'Senior Probation Officer'} %}
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">{{ probationPractitioner.name }} <span class="workforce-grade">{{ gradeDescriptions[probationPractitioner.grade] }}</span></h1>    
   </div>
 </div>
 
@@ -41,7 +42,7 @@ Farah Haynes | Overview | Workforce planning
           <a class="moj-sub-navigation__link govuk-link--no-visited-state" aria-current="page" href="#3">Overview</a>
         </li>
         <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="officer-view-cases">Active cases</a>
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="{{ url }}/officer-view-cases">Active cases</a>
         </li>
         <li class="moj-sub-navigation__item">
           <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="#3">Archive (on nDelius)</a>
@@ -59,14 +60,14 @@ Farah Haynes | Overview | Workforce planning
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-one-quarter">
         <div class="card card-total">
-          <a href="officer-view-cases" class="govuk-link--no-visited-state"><span class="card__heading">42</span>
+          <a href="officer-view-cases" class="govuk-link--no-visited-state"><span class="card__heading">{{ probationPractitioner.totals.total }}</span>
           <p>total cases</p></a>
         </div>
       </div>
 
       <div class="govuk-grid-column-one-quarter">
         <div class="card card-total-subset">
-          <span class="card__heading">88%</span>
+          <span class="card__heading">{{ probationPractitioner.capacity }}%</span>
           <p>workload</p>
         </div>
       </div>
@@ -92,14 +93,14 @@ Farah Haynes | Overview | Workforce planning
               Points available
             </dt>
             <dd class="govuk-summary-list__value">
-              2176
+              {{ probationPractitioner.pointsAvailable }}
             </dd>
           </div><div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Points used
             </dt>
             <dd class="govuk-summary-list__value">
-              2093
+              {{ probationPractitioner.pointsUsed }}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -107,7 +108,7 @@ Farah Haynes | Overview | Workforce planning
               Points remaining
             </dt>
             <dd class="govuk-summary-list__value">
-              83
+              {{ probationPractitioner.pointsAvailable - probationPractitioner.pointsUsed }}
             </dd>
           </div>
         </dl>
@@ -128,7 +129,7 @@ Farah Haynes | Overview | Workforce planning
               Weekly hours
             </dt>
             <dd class="govuk-summary-list__value">
-              31
+              {{ probationPractitioner.contractedHours }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">
@@ -141,7 +142,7 @@ Farah Haynes | Overview | Workforce planning
               Reductions
             </dt>
             <dd class="govuk-summary-list__value">
-              6 hours until 12 May 21
+              {{ probationPractitioner.totalReductions }} hours until {{ probationPractitioner.nextChange.format('Do MMM YY') }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="#">
@@ -165,7 +166,7 @@ Farah Haynes | Overview | Workforce planning
               Cases due to end within next 4 weeks
             </dt>
             <dd class="govuk-summary-list__value">
-              9
+              {{ casesDueToEnd.length }}
             </dd>
             <dd class="govuk-summary-list__actions">
 
@@ -177,7 +178,7 @@ Farah Haynes | Overview | Workforce planning
               Releases within next 4 weeks
             </dt>
             <dd class="govuk-summary-list__value">
-              1
+              {{ sentencesDueToEnd.length }}
             </dd>
             <dd class="govuk-summary-list__actions">
               
@@ -189,7 +190,7 @@ Farah Haynes | Overview | Workforce planning
               Parole reports to complete within next 4 weeks
             </dt>
             <dd class="govuk-summary-list__value">
-              4
+              {{ paroleReportsDue.length }}
             </dd>
             <dd class="govuk-summary-list__actions">
 
@@ -212,11 +213,12 @@ Farah Haynes | Overview | Workforce planning
             </figcaption>
         </figure>
     <ul class="govuk-list">
-      <li><span class="caseload-swatch tier-a"></span>Tier A: 5</li>
-      <li><span class="caseload-swatch tier-b"></span>Tier B1: 7</li> 
-      <li><span class="caseload-swatch tier-c"></span>Tier B2: 9</li>
-      <li><span class="caseload-swatch tier-d"></span>Tier C1: 17</li>
-      <li><span class="caseload-swatch tier-other"></span>Other: 4</li>
+    {% set tiers = ["A", "B1", "B2", "C1", "C2", "D1", "D2", "E", "F", "G"] %}
+    {% for tier in tiers %}
+      {% if probationPractitioner.totals[tier] %}
+        <li><span class="caseload-swatch tier-{{ tier }}"></span>Tier {{ tier }}: {{ probationPractitioner.totals[tier] }}</li>
+      {% endif %}
+    {% endfor %}
     </ul>
   </div>
 </div>
@@ -225,8 +227,9 @@ Farah Haynes | Overview | Workforce planning
   <div class="govuk-grid-column-one-quarter">
     <h3 class="govuk-heading-m">Specialist areas</h3>
     <ul class="govuk-list govuk-list--bullet">
-      <li>Integrated Offender Management (IOM)</li> 
-      <li>Serious Group Offending (SGO)</li> 
+      {% for specialistArea in probationPractitioner.specialistAreas %}
+        <li>{{ specialistArea }}</li> 
+      {% endfor %}
     </ul>
     <p><a href="">Edit</a></p>
   </div>
@@ -234,8 +237,9 @@ Farah Haynes | Overview | Workforce planning
   <div class="govuk-grid-column-one-quarter">
     <h3 class="govuk-heading-m">Completed training</h3>
     <ul class="govuk-list govuk-list--bullet">
-      <li>Domestic abuse</li>
-      <li>Virtual inductions</li> 
+      {% for completedTrainingItem in probationPractitioner.completedTraining %}
+        <li>{{ completedTrainingItem }}</li> 
+      {% endfor %} 
     </ul>
     <p><a href="">Edit</a></p>
   </div>
