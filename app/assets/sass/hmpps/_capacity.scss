@@ -170,21 +170,22 @@
   }
 }
 
-//* Confirmation banner thingy *//
+//* Case list status feedback*/
+.case-doc-checklist {
+  li {
+    padding-left: 20px;
 
-@function tint($color, $percentage) {
-  @return mix(white, $color, $percentage);
-}
+    &.yep {
+      background-color: transparent;
+      background-image: url('/public/images/check.svg');
+      background-repeat: no-repeat;
+    }
 
-.maw-confirmation {
-  @include govuk-responsive-padding(6);
-  @include govuk-responsive-margin(6, 'bottom');
-  border-left: solid 5px govuk-colour('turquoise');
-  background-color: #A0D6D1;
-
-  p {
-    margin: 0;
+    &.nope {
+      background-color: transparent;
+      background-image: url('/public/images/cross.svg');
+      background-position: 0 3px;
+      background-repeat: no-repeat;
+    }
   }
-
 }
-
