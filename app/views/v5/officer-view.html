@@ -7,7 +7,7 @@ Faraz Haynes | Overview | Workforce planning
 
 {% block beforeContent %}
 <div class="govuk-breadcrumbs">
-  <a href="team-view" class="govuk-back-link govuk-body">Back to team overview</a>
+  <a href="case-view" class="govuk-back-link govuk-body">Back to case overview</a>
 </div>
 {% endblock %}
 
@@ -189,12 +189,9 @@ Faraz Haynes | Overview | Workforce planning
   <div class="govuk-grid-column-one-third">
     <h3 class="govuk-heading-m">Case mix</h3>
     <figure style="margin: 0;" class="govuk-!-padding-bottom-4">
-            <img src="/public/images/casemix.png"
-                 alt="Visual representation of types of active casework">
-            <figcaption class="visually-hidden sr-only">
-              Pie chart showing breakdown of different case types
-            </figcaption>
-        </figure>
+      <img src="/public/images/casemix.png" alt="Visual representation of types of active casework">
+      <figcaption class="visually-hidden sr-only">Pie chart showing breakdown of different case types</figcaption>
+    </figure>
     <ul class="govuk-list">
       <li><span class="caseload-swatch tier-a"></span>Tier A: 5</li>
       <li><span class="caseload-swatch tier-b"></span>Tier B1: 7</li> 
@@ -202,30 +199,21 @@ Faraz Haynes | Overview | Workforce planning
       <li><span class="caseload-swatch tier-d"></span>Tier C1: 17</li>
       <li><span class="caseload-swatch tier-other"></span>Other: 4</li>
     </ul>
-  </div>
-</div>
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-one-quarter">
     <h3 class="govuk-heading-m">Specialist areas</h3>
     <ul class="govuk-list govuk-list--bullet">
       <li>Integrated Offender Management (IOM)</li> 
       <li>Serious Group Offending (SGO)</li> 
     </ul>
-    <p><a href="">Edit</a></p>
-  </div>
+    
 
-  <div class="govuk-grid-column-one-quarter">
     <h3 class="govuk-heading-m">Completed training</h3>
     <ul class="govuk-list govuk-list--bullet">
       <li>Domestic abuse</li>
       <li>Virtual inductions</li> 
     </ul>
-    <p><a href="">Edit</a></p>
-  </div>
-
-  <div class="govuk-grid-column-one-half">
     
   </div>
 </div>
+
 {% endblock %}
