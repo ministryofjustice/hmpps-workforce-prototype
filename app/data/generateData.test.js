@@ -1,4 +1,12 @@
-const { generateTeam, generateServiceUsers, calculatePointsUsed } = require('./generateData')
+const { 
+  generateTeam, 
+  generateServiceUsers, 
+  calculatePointsUsed, 
+  calculateNextChange, 
+  calculateTotalReductions, 
+  calculatePointsAvailable } = require('./generateData')
+const { CUSTODY, COMMUNITY } = require('./filterHelpers')
+const moment = require("moment")
 
 describe('calculate Points Used', () => {
   it('should calculate the points used for a given probation practitioner', () => {
@@ -25,6 +33,7 @@ describe('generate team', () => {
       expect.arrayContaining([
         expect.objectContaining({
           'OM_Grade_Code': expect.any(String),
+          'grade': expect.any(String),
         })
       ])
     )
@@ -62,7 +71,7 @@ describe('generate team', () => {
           expect.arrayContaining([
             expect.objectContaining({
               'tier': 'C1',
-              'receivingFrom': 'Custody',
+              'receivingFrom': CUSTODY,
               'name': expect.any(String),
               'postcode': expect.any(String),
               'crn': expect.any(String),
@@ -70,15 +79,41 @@ describe('generate team', () => {
             }),
             expect.objectContaining({
               'tier': 'C2',
-              'receivingFrom': 'Community',
+              'receivingFrom': COMMUNITY,
             }),
             expect.objectContaining({
               'tier': 'C2',
-              'receivingFrom': 'Community',
+              'receivingFrom': COMMUNITY,
             }),
           ])
         )
       })
+    })
+  })
+})
+
+describe('get probation practitioner reduction summary', () => {
+  let probationPractitioner
+  beforeEach(() => {
+    probationPractitioner = {
+      reductions: [
+        { hours:29.6, start:moment('2021-03-19T00:00:00.000Z'), end:moment('2021-07-19T01:00:00.000Z'), status: 'ACTIVE' },
+        { hours:22.2, start:moment('2021-07-20T01:00:00.000Z'), end:moment('2021-11-20T00:00:00.000Z'), status: 'SCHEDULED' },
+        { hours:14.8, start:moment('2021-11-21T00:00:00.000Z'), end:moment('2022-03-21T00:00:00.000Z'), status: 'DELETED' },
+        { hours:14.8, start:moment('2021-11-21T00:00:00.000Z'), end:moment('2022-04-21T01:00:00.000Z'), status: 'SCHEDULED' }
+      ],
+    }
+  })
+  describe('when calculating the total reduction hours', () => {
+    it('should return the total hours reduction', () => {
+      expect(calculateTotalReductions(probationPractitioner, moment('2021-07-18T01:00:00.000Z'))).toEqual( 29.6 )
+      expect(calculateTotalReductions(probationPractitioner, moment('2021-08-20T01:00:00.000Z'))).toEqual( 22.2 )
+    })
+  })
+  describe('when calculating the next change in reduction hours', () => {
+    it('should return the date of the next change', () => {
+      expect(calculateNextChange(probationPractitioner, moment('2021-07-18T01:00:00.000Z')).isSame('2021-07-19T01:00:00.000Z')).toEqual( true )
+      expect(calculateNextChange(probationPractitioner, moment('2021-08-20T01:00:00.000Z')).isSame('2021-11-20T00:00:00.000Z')).toEqual( true )
     })
   })
 })
