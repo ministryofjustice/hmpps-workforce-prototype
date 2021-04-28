@@ -14,6 +14,34 @@ Prototype | HMPPS | Manage a workforce
 
       <div class="moj-timeline__item">
         <div class="moj-timeline__header">
+          <h2 class="moj-timeline__title">Filtering</h2>
+          <p class="moj-timeline__byline">(Sprint 6)</p>
+        </div>
+        <p class="moj-timeline__date">April 27&mdash;May 10
+        </p>
+
+        <div class="moj-timeline__description">
+          <p>Adding sort and filter functionality to lists.</p>
+          <form action="/v6/unallocated-cases" method="post" novalidate>
+            <input type="hidden" name="reduction-hours" value="5.00">
+            <input type="hidden" name="reduction-start-day" value="26">
+            <input type="hidden" name="reduction-start-month" value="10">
+            <input type="hidden" name="reduction-start-year" value="2020">
+            <input type="hidden" name="reduction-end-day" value="27">
+            <input type="hidden" name="reduction-end-month" value="10">
+            <input type="hidden" name="reduction-end-year" value="2030">
+            <input type="hidden" name="contracted-hours" value="37.00">
+            <input type="hidden" name="contracted-capacity" value="88">
+            <input type="hidden" name="contracted-colour" value="under-capacity">
+            <button class="govuk-button" data-module="govuk-button">
+              View prototype
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="moj-timeline__item">
+        <div class="moj-timeline__header">
           <h2 class="moj-timeline__title">Iterate allocation journey</h2>
           <p class="moj-timeline__byline">(Sprint 5)</p>
         </div>
