@@ -60,7 +60,7 @@ Faraz Haynes | Overview | Workforce planning
         </tr>
       </thead>
       <tbody class="govuk-table__body">
-      {% set gradeDescriptions = {PO: 'Probation Officer', PSO: 'Probation Service Officer', PQiP: 'Trainee Probation Officer', SPO: 'Senior Probation Officer'} %}
+      {% set gradeDescriptions = {PO: 'Probation Officer', PSO: 'Probation Service Officer', NQO: 'Newly Qualified Officer', PQiP: 'Trainee Probation Officer', SPO: 'Senior Probation Officer'} %}
         {% for probationPractitioner in team %}
           <tr class="govuk-table__row">
             <td class="govuk-table__cell"><a href="officer-view/{{ probationPractitioner.OM_Key }}">{{ probationPractitioner.name }}</a></td>
