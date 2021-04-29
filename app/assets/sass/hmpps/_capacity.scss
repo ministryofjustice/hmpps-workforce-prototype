@@ -3,23 +3,33 @@
   display: block;
 }
 
-.tier-a {
+.tier-a,
+.tier-A {
   background-color: govuk-colour('bright-purple');
 }
 
-.tier-b {
+.tier-b,
+.tier-B1,
+.tier-B2 {
   background-color: govuk-colour('purple');
 }
 
-.tier-c {
+.tier-c,
+.tier-C1,
+.tier-C2 {
   background-color: govuk-colour('dark-blue');
 }
 
-.tier-d {
+.tier-d,
+.tier-D1,
+.tier-D2 {
   background-color: govuk-colour('blue');
 }
 
-.tier-other {
+.tier-other,
+.tier-E,
+.tier-F,
+.tier-G {
   background-color: govuk-colour('light-blue');
 }
 

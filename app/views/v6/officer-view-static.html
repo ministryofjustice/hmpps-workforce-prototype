@@ -2,51 +2,39 @@
 
 
 {% block pageTitle %}
-{{ probationPractitioner.name }} | Overview | Workforce planning
+Faraz Haynes | Overview | Workforce planning
 {% endblock %}
 
 {% block beforeContent %}
 <div class="govuk-breadcrumbs">
-  <a href="../case-allocate" class="govuk-back-link govuk-body">Back to case allocation</a>
+  <a href="case-view" class="govuk-back-link govuk-body">Back to case overview</a>
 </div>
-<!--
-<div class="govuk-breadcrumbs ">
-  <ol class="govuk-breadcrumbs__list">
-    <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="dashboard">Home</a>
-    </li>
-    <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="#">All regions</a>
-    </li>
-    <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="#">NPS South Central Division</a>
-    </li>
-    <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="{{ versionUrl }}/team-view">Hampshire South West</a>
-    </li>
-  </ol>
-</div> -->
 {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <span class="govuk-caption-xl">Southampton Team 1</span>
-    {% set gradeDescriptions = {PO: 'Probation Officer', PSO: 'Probation Service Officer', NQO: 'Newly Qualified Officer', PQiP: 'Trainee Probation Officer', SPO: 'Senior Probation Officer'} %}
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">{{ probationPractitioner.name }} <span class="workforce-grade">{{ gradeDescriptions[probationPractitioner.grade] }}</span></h1>    
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">Faraz Haynes <span class="workforce-grade">Probation Officer</span></h1>    
   </div>
 </div>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    <nav class="moj-sub-navigation" aria-label="Sub navigation">
+<nav class="moj-sub-navigation" aria-label="Sub navigation">
 
       <ul class="moj-sub-navigation__list">
         <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link govuk-link--no-visited-state" aria-current="page">Overview</a>
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state"  aria-current="page" href="officer-view">Overview</a>
         </li>
         <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="{{ url }}/officer-view-cases">Active cases</a>
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="officer-view-cases">Active cases</a>
+        </li>
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="officer-view-contracted">Contracted hours</a>
+        </li>
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state"  href="officer-view-reductions">Reductions</a>
         </li>
       </ul>
     </nav>
@@ -59,27 +47,21 @@
     <h2 class="govuk-heading-l" style="margin-bottom: 0!important;">Current workload</h2>
     <p class="govuk-body-s govuk-!-margin-bottom-2">Last updated: Today at 9:00am</p>
     <div class="govuk-grid-row">
+      
+      <div class="govuk-grid-column-one-quarter">
+        <div class="card card-total-subset {{ data['contracted-colour'] }}">
+          <span class="card__heading">{{ data['contracted-capacity'] }}%</span>
+          <p>capacity</p>
+        </div>
+      </div>
+
       <div class="govuk-grid-column-one-quarter">
         <div class="card card-total">
-          <a href="officer-view-cases" class="govuk-link--no-visited-state"><span class="card__heading">{{ probationPractitioner.totals.total }}</span>
+          <a href="officer-view-cases" class="govuk-link--no-visited-state"><span class="card__heading">42</span>
           <p>total cases</p></a>
         </div>
       </div>
-
-      <div class="govuk-grid-column-one-quarter">
-        <div class="card card-total-subset">
-          <span class="card__heading">{{ probationPractitioner.capacity }}%</span>
-          <p>workload</p>
-        </div>
-      </div>
-
-
-
     </div>
-
-    <!--<div class="workforce-progress-container">
-      <div class="workforce-progress-bar" style="width:98%"><p>98%<span style="visibility: hidden;">capacity</span></p></div>
-    </div>-->
     
     <details class="govuk-details" data-module="govuk-details">
       <summary class="govuk-details__summary">
@@ -94,14 +76,14 @@
               Points available
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ probationPractitioner.pointsAvailable }}
+              2176
             </dd>
           </div><div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Points used
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ probationPractitioner.pointsUsed }}
+              2093
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -109,7 +91,7 @@
               Points remaining
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ probationPractitioner.pointsAvailable - probationPractitioner.pointsUsed }}
+              83
             </dd>
           </div>
         </dl>
@@ -127,14 +109,14 @@
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Weekly hours
+              Contracted hours
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ probationPractitioner.contractedHours }}
+              {{ data['contracted-hours'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">
-                Edit<span class="govuk-visually-hidden"> name</span>
+              <a class="govuk-link govuk-link--no-visited-state" href="officer-view-contracted">
+                Edit<span class="govuk-visually-hidden"> contracted hours</span>
               </a>
             </dd>
           </div>
@@ -143,11 +125,11 @@
               Reductions
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ probationPractitioner.totalReductions }} hours until {{ probationPractitioner.nextChange.format('Do MMM YY') }}
+              8.00 hours until {{ data['reduction-end-day'] }}/{{ data['reduction-end-month'] }}/{{ data['reduction-end-year'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">
-                Edit<span class="govuk-visually-hidden"> name</span>
+              <a class="govuk-link govuk-link--no-visited-state" href="officer-view-reductions">
+                Edit<span class="govuk-visually-hidden"> reductions</span>
               </a>
             </dd>
           </div>
@@ -156,7 +138,7 @@
               Last case allocated
             </dt>
             <dd class="govuk-summary-list__value">
-              22 Jan (Tier B2, on licence in community)
+              22 January 2021 (Tier B2, on licence in community)
             </dd>
             <dd class="govuk-summary-list__actions">
 
@@ -167,7 +149,7 @@
               Cases due to end within next 4 weeks
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ casesDueToEnd.length }}
+              9
             </dd>
             <dd class="govuk-summary-list__actions">
 
@@ -179,7 +161,7 @@
               Releases within next 4 weeks
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ sentencesDueToEnd.length }}
+              1
             </dd>
             <dd class="govuk-summary-list__actions">
               
@@ -191,7 +173,7 @@
               Parole reports to complete within next 4 weeks
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ paroleReportsDue.length }}
+              4
             </dd>
             <dd class="govuk-summary-list__actions">
 
@@ -211,27 +193,26 @@
       <figcaption class="visually-hidden sr-only">Pie chart showing breakdown of different case types</figcaption>
     </figure>
     <ul class="govuk-list">
-    {% set tiers = ["A", "B1", "B2", "C1", "C2", "D1", "D2", "E", "F", "G"] %}
-    {% for tier in tiers %}
-      {% if probationPractitioner.totals[tier] %}
-        <li><span class="caseload-swatch tier-{{ tier }}"></span>Tier {{ tier }}: {{ probationPractitioner.totals[tier] }}</li>
-      {% endif %}
-    {% endfor %}
+      <li><span class="caseload-swatch tier-a"></span>Tier A: 5</li>
+      <li><span class="caseload-swatch tier-b"></span>Tier B1: 7</li> 
+      <li><span class="caseload-swatch tier-c"></span>Tier B2: 9</li>
+      <li><span class="caseload-swatch tier-d"></span>Tier C1: 17</li>
+      <li><span class="caseload-swatch tier-other"></span>Other: 4</li>
     </ul>
 
-     <h3 class="govuk-heading-m">Specialist areas</h3>
+    <h3 class="govuk-heading-m">Specialist areas</h3>
     <ul class="govuk-list govuk-list--bullet">
-      {% for specialistArea in probationPractitioner.specialistAreas %}
-        <li>{{ specialistArea }}</li> 
-      {% endfor %}
+      <li>Integrated Offender Management (IOM)</li> 
+      <li>Serious Group Offending (SGO)</li> 
     </ul>
+    
 
-     <h3 class="govuk-heading-m">Completed training</h3>
+    <h3 class="govuk-heading-m">Completed training</h3>
     <ul class="govuk-list govuk-list--bullet">
-      {% for completedTrainingItem in probationPractitioner.completedTraining %}
-        <li>{{ completedTrainingItem }}</li> 
-      {% endfor %} 
+      <li>Domestic abuse</li>
+      <li>Virtual inductions</li> 
     </ul>
+    
   </div>
 </div>
 
