@@ -67,7 +67,7 @@
       </div>
 
       <div class="govuk-grid-column-one-quarter">
-        <div class="card card-total-subset">
+        <div class="card card-total-subset{% if probationPractitioner.capacity > 120 %} over-capacity{% endif %}">
           <span class="card__heading">{{ probationPractitioner.capacity }}%</span>
           <p>workload</p>
         </div>
