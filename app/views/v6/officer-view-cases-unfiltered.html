@@ -7,7 +7,7 @@ Faraz Haynes | Active cases | Workforce planning
 
 {% block beforeContent %}
 <div class="govuk-breadcrumbs">
-  <a href="../../case-allocate" class="govuk-back-link govuk-body">Back to case allocation</a>
+  <a href="case-view" class="govuk-back-link govuk-body">Back to case overview</a>
 </div>
 {% endblock %}
 
@@ -15,8 +15,7 @@ Faraz Haynes | Active cases | Workforce planning
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <span class="govuk-caption-xl">Southampton Team 1</span>
-     {% set gradeDescriptions = {PO: 'Probation Officer', PSO: 'Probation Service Officer', NQO: 'Newly Qualified Officer', PQiP: 'Trainee Probation Officer', SPO: 'Senior Probation Officer'} %}
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">{{ probationPractitioner.name }} <span class="workforce-grade">{{ gradeDescriptions[probationPractitioner.grade] }}</span></h1> 
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">Faraz Haynes <span class="workforce-grade">Probation Officer</span></h1> 
   </div>
 </div>
 
@@ -27,17 +26,17 @@ Faraz Haynes | Active cases | Workforce planning
 
       <ul class="moj-sub-navigation__list">
         <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link govuk-link--no-visited-state">Overview</a>
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state"  href="officer-view">Overview</a>
         </li>
         <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link govuk-link--no-visited-state" aria-current="page" href="#">Active cases</a>
-        </li>
-        <!--<li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="#">Contracted hours</a>
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state" aria-current="page" href="officer-view-cases">Active cases</a>
         </li>
         <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link govuk-link--no-visited-state"  href="#">Reductions</a>
-        </li>-->
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="officer-view-contracted">Contracted hours</a>
+        </li>
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state"  href="officer-view-reductions">Reductions</a>
+        </li>
       </ul>
     </nav>
   </div>
@@ -48,313 +47,7 @@ Faraz Haynes | Active cases | Workforce planning
     <h2 class="govuk-heading-l">Active cases</h2>
 
 
-<div class="moj-filter-layout">
-
-  <div class="moj-filter-layout__filter">
-
-    
-
-<div class="moj-filter">
-
-  <div class="moj-filter__header">
-
-    <div class="moj-filter__header-title">
-      <h2 class="govuk-heading-m">Filter</h2>
-    </div>
-
-    <div class="moj-filter__header-action">
-      
-    </div>
-
-  </div>
-
-  <div class="moj-filter__content">
-
-    
-
-      <div class="moj-filter__selected">
-
-        <div class="moj-filter__selected-heading">
-
-          <div class="moj-filter__heading-title">
-            <h2 class="govuk-heading-m">Selected filters</h2>
-          </div>
-
-          <div class="moj-filter__heading-action">
-            <p><a class="govuk-link govuk-link--no-visited-state" href="">Clear filters</a></p>
-          </div>
-
-        </div>
-
-        
-          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Type of case</h3>
-
-          <ul class="moj-filter-tags">
-            
-              <li><a class="moj-filter__tag" href="#"><span class="govuk-visually-hidden">Remove this filter</span> Community</a></li>
-            
-              <li><a class="moj-filter__tag" href="#"><span class="govuk-visually-hidden">Remove this filter</span> On licence</a></li>
-
-              <li><a class="moj-filter__tag" href="#"><span class="govuk-visually-hidden">Remove this filter</span> Custody</a></li>
-            
-          </ul>
-        
-          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Tier</h3>
-
-          <ul class="moj-filter-tags">
-            
-              <li><a class="moj-filter__tag" href="#"><span class="govuk-visually-hidden">Remove this filter</span> B1</a></li>
-              <li><a class="moj-filter__tag" href="#"><span class="govuk-visually-hidden">Remove this filter</span> B2</a></li>
-              <li><a class="moj-filter__tag" href="#"><span class="govuk-visually-hidden">Remove this filter</span> C1</a></li>
-            
-          </ul>
-        
-
-      </div>
-    
-
-    <div class="moj-filter__options">
-
-      
-
-  
-    
-  
-
-<button class="govuk-button" data-module="govuk-button">
-  Apply filters
-</button>
-
-
-      
-
-  
-
-<div class="govuk-form-group">
-  <label class="govuk-label govuk-label--m" for="keywords">
-    Keywords
-  </label>
-
-<input class="govuk-input" id="keywords" name="keywords" type="text">
-</div>
-
-
-  
-
-
-
-
-
-
-  
-
-  
-
-  
-<div class="govuk-form-group">
-
-  <fieldset class="govuk-fieldset">
-  
-  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-  
-    Type of case
-  
-  </legend>
-  
-
-  <div class="govuk-checkboxes govuk-checkboxes--small">
-    
-      
-          
-        
-        
-        
-        
-        
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="type" name="type" type="checkbox" value="1" checked>
-          <label class="govuk-label govuk-checkboxes__label" for="type">
-        Community (18)
-      </label>
-          
-        </div>
-        
-      
-    
-      <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="type-1" name="type" type="checkbox" value="15" checked>
-          <label class="govuk-label govuk-checkboxes__label" for="type-1">
-        On licence (11)
-      </label>
-          
-        </div>
-        
-        
-        
-        
-        
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="type-2" name="type" type="checkbox" value="2" checked>
-          <label class="govuk-label govuk-checkboxes__label" for="type-2">
-        Custody (3)
-      </label>
-          
-        </div>
-        
-      
-    
-      
-        
-        
-        
-        
-        
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="type-3" name="type" type="checkbox" value="3">
-          <label class="govuk-label govuk-checkboxes__label" for="type-3">
-        On warrant (2)
-      </label>
-          
-        </div>
-        
-      
-    
-  </div>
-  
-
-</fieldset>
-
-
-</div>
-
-
-  
-
-
-
-
-
-
-  
-
-  
-
-  
-<div class="govuk-form-group">
-
-  <fieldset class="govuk-fieldset">
-  
-  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-  
-    Tier
-  
-  </legend>
-  
-
-  <div class="govuk-checkboxes govuk-checkboxes--small">
-    
-      
-          
-        
-        
-        
-        
-        
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="status" name="status" type="checkbox" value="1" checked>
-          <label class="govuk-label govuk-checkboxes__label" for="status">
-        B1 (5)
-      </label>
-          
-        </div>
-        
-      
-    
-      
-        
-        
-        
-        
-        
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="status-2" name="status" type="checkbox" value="2" checked>
-          <label class="govuk-label govuk-checkboxes__label" for="status-2">
-        B2 (3)
-      </label>
-          
-        </div>
-        
-      
-    
-      
-        
-        
-        
-        
-        
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="status-3" name="status" type="checkbox" value="3" checked>
-          <label class="govuk-label govuk-checkboxes__label" for="status-3">
-        C1 (13)
-      </label>
-    </div>
-
-       <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="status-4" name="status" type="checkbox" value="4">
-          <label class="govuk-label govuk-checkboxes__label" for="status-4">
-        C2 (13)
-      </label>
-          
-        </div>
-
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="status-5" name="status" type="checkbox" value="5">
-          <label class="govuk-label govuk-checkboxes__label" for="status-5">
-        D1 (0)
-      </label>
-          
-        </div>
-
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="6">
-          <label class="govuk-label govuk-checkboxes__label" for="status-6">
-        D2 (0)
-      </label>
-          
-        </div>
-        
-      
-    
-  </div>
-  
-
-</fieldset>
-
-
-</div>
-
-
-
-
-    </div>
-
-  </div>
-
-</div>
-
-  </div>
-
-  <div class="moj-filter-layout__content">
-
-  <div class="moj-action-bar">
-    <div class="moj-action-bar__filter"></div>
-  </div>
-
-  <div class="moj-scrollable-pane">
-
-    <div class="moj-scrollable-pane__wrapper">
-
-      <table class="govuk-table govuk-table-xl">
+<table class="govuk-table govuk-table-xl">
   
   
   <thead class="govuk-table__head">
@@ -569,39 +262,11 @@ Faraz Haynes | Active cases | Workforce planning
         </tr>
   </tbody>
 </table>    
-  
-
-    </div>
-
-  </div>
-</div>
-
-
   </div>
 </div>
 {% endblock %}
 {% block scripts %}
   {{ super() }}
-  <script>
-    new MOJFrontend.FilterToggleButton({
-      bigModeMediaQuery: '(min-width: 48.063em)',
-      startHidden: true,
-      toggleButton: {
-        container: $('.moj-action-bar__filter'),
-        showText: 'Show filter',
-        hideText: 'Hide filter',
-        classes: 'govuk-button--secondary'
-      },
-      closeButton: {
-        container: $('.moj-filter__header-action'),
-        text: 'Close'
-      },
-      filter: {
-        container: $('.moj-filter')
-      }
-    });
-  </script>
-
   <script>
     console.log($('table'))
 
