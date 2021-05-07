@@ -15,7 +15,7 @@ Faraz Haynes | Overview | Workforce planning
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    <span style="float:left; width: 71px; height: 71px; padding :10px; margin-right: 10px; background-color: #1d70b8; color: white; font-size: 60px; font-weight: 800;">C1</span><h1 class="govuk-heading-xl govuk-!-margin-bottom-2">Dylan Adam Armstrong<span class="workforce-grade">J678910</span></h1>    
+    <span style="float:left; width: 71px; height: 71px; padding :10px; margin-right: 10px; background-color: #1d70b8; color: white; font-size: 60px; font-weight: 800;">C1</span><h1 class="govuk-heading-xl govuk-!-margin-bottom-2">Dylan Adam Armstrong<span class="workforce-grade">CRN: J678910</span></h1>    
   </div>
 </div>
 
@@ -33,7 +33,7 @@ Faraz Haynes | Overview | Workforce planning
           <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="case-risk">Risk register</a>
         </li>
                  <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link govuk-link--no-visited-state" aria-current="page" href="case-allocate">Allocate probation officer</a>
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state" aria-current="page" href="case-allocate">Allocate to an officer</a>
         </li>
       </ul>
     </nav>
@@ -42,7 +42,7 @@ Faraz Haynes | Overview | Workforce planning
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-      <h3 id="cleared" class="govuk-heading-l">Available officers</h3>
+      <h2 id="cleared" class="govuk-heading-l">Allocate to an officer</h2>
 
 
 
@@ -309,23 +309,32 @@ Faraz Haynes | Overview | Workforce planning
 
     <div class="moj-scrollable-pane__wrapper">
     <!--<form action="/allocate-handler" method="post" novalidate>-->
-    <form action="allocation-reasons" method="post" novalidate>
+    <form action="allocation-confirm" method="post" novalidate>
             <table class="govuk-table govuk-table-xl" data-module="moj-sortable-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header"></th>
           <th scope="col" class="govuk-table__header" aria-sort="none">Name</th>
           <th scope="col" class="govuk-table__header" aria-sort="none">Grade</th>
           <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="Ascending">Capacity</th>
           <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none">Allocations in past 7 days</th>
           <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none">Community cases</th>
           <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none">Custody cases</th>
-          <th scope="col" class="govuk-table__header"></th>
+          
         </tr>
       </thead>
       <tbody class="govuk-table__body">
       {% set gradeDescriptions = {PO: 'Probation Officer', PSO: 'Probation Service Officer', NQO: 'Newly Qualified Officer', PQiP: 'Trainee Probation Officer', SPO: 'Senior Probation Officer'} %}
         {% for probationPractitioner in team %}
           <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+              <div class="govuk-radios govuk-radios--small">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="allocate-officer-{{ probationPractitioner.OM_Key }}" name="allocated-officer" type="radio" value="{{ probationPractitioner.name }}">
+                  <label class="govuk-label govuk-radios__label" for="allocate-officer-{{ probationPractitioner.OM_Key }}"></label>
+                </div>
+              </div>
+            </td>
             <td class="govuk-table__cell"><a href="officer-view/{{ probationPractitioner.OM_Key }}">{{ probationPractitioner.name }}</a></td>
             {% set gradeDescription = gradeDescriptions[probationPractitioner.grade] %}
             <td class="govuk-table__cell" data-sort-value="{{ gradeDescription }}">
@@ -335,20 +344,13 @@ Faraz Haynes | Overview | Workforce planning
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ probationPractitioner.allocationsInLast7.length }}">{{ probationPractitioner.allocationsInLast7.length }}</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ probationPractitioner.totals.community }}">{{ probationPractitioner.totals.community }}</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ probationPractitioner.totals.custody }}">{{ probationPractitioner.totals.custody }}</td>
-            <td class="govuk-table__cell">
-              <div class="govuk-radios govuk-radios--small">
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="allocate-officer-{{ probationPractitioner.OM_Key }}" name="allocated-officer" type="radio" value="{{ probationPractitioner.name }}">
-                  <label class="govuk-label govuk-radios__label" for="allocate-officer-{{ probationPractitioner.OM_Key }}"></label>
-                </div>
-              </div>
-            </td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
+    <input type="hidden" name="allocated-capacity" value="{{ probationPractitioner.capacity }}">
       <button class="govuk-button" data-module="govuk-button" style="float: left; margin-right: 30px;">
-        Allocate to selected officer
+        Select officer
       </button>
     </form>
   
@@ -360,7 +362,7 @@ Faraz Haynes | Overview | Workforce planning
   </div>
 </div>
 
-    <form action="case-view#cleared" method="post" novalidate>
+    <form action="case-allocate#cleared" method="post" novalidate>
       <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
         Clear selection
       </button>
@@ -376,7 +378,7 @@ Faraz Haynes | Overview | Workforce planning
       startHidden: true,
       toggleButton: {
         container: $('.moj-action-bar__filter'),
-        showText: 'Show filter',
+        showText: 'Filter this list',
         hideText: 'Hide filter',
         classes: 'govuk-button--secondary'
       },
