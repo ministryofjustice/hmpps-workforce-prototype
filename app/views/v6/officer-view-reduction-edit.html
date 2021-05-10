@@ -101,7 +101,7 @@ Faraz Haynes | Reductions | Workforce planning
             <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="reduction-hours">
               Hours
             </label></h1>
-            <input class="govuk-input govuk-date-input__input govuk-input--width-3" id="reduction-hours" name="reduction-hours" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['reduction-hours'] }}"></div>
+            <input class="govuk-input govuk-date-input__input govuk-input--width-3" id="reduction-hours" name="reduction-hours" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['reduction-hours'] | default('5.00') }}"></div>
         </div>
       </div>
 
