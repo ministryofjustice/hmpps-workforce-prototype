@@ -7,33 +7,38 @@ Allocation confirmation | Workforce planning
 
 {% block beforeContent %}
 <div class="govuk-breadcrumbs">
-  <a href="case-view" class="govuk-back-link govuk-body">Back to case view</a>
+  <a href="unallocated-cases" class="govuk-back-link govuk-body">Back to unallocated cases</a>
 </div>
 {% endblock %}
 
 {% block content %}
+
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    <span class="govuk-caption-xl">Hampshire South West</span>
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">Southampton Team 1</h1> 
+
+    <span style="float:left; width: 71px; height: 71px; padding :10px; margin-right: 10px; background-color: #1d70b8; color: white; font-size: 60px; font-weight: 800;">C1</span><h1 class="govuk-heading-xl govuk-!-margin-bottom-2">Dylan Adam Armstrong<span class="workforce-grade">CRN: J678910</span></h1>    
   </div>
 </div>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <nav class="moj-sub-navigation" aria-label="Sub navigation">
-
       <ul class="moj-sub-navigation__list">
         <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link" href="team-view">Overview</a>
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="case-view">Summary</a>
         </li>
-
         <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link govuk-link--no-visited-state" aria-current="page" href="unallocated-cases"><span id="notifications" class="moj-notification-badge">2</span> Unallocated cases</a>
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="case-history">Probation record</a>
+        </li>
+        <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="case-risk">Risk register</a>
+        </li>
+                 <li class="moj-sub-navigation__item">
+          <a class="moj-sub-navigation__link govuk-link--no-visited-state" aria-current="page" href="case-allocate">Allocate to an officer</a>
         </li>
       </ul>
     </nav>
-    
   </div>
 </div>
 
@@ -42,20 +47,24 @@ Allocation confirmation | Workforce planning
   <div class="govuk-grid-column-two-thirds">
     <div class="govuk-panel govuk-panel--confirmation">
           <h1 class="govuk-panel__title">
-            Allocation ready
+            Allocation coplete
           </h1>
           <div class="govuk-panel__body">
             Case reference number<br><strong>J678910</strong>
           </div>
           <div class="govuk-panel__body">
-            wiil be assigned to<br><strong>{{ data['allocated-officer'] }}</strong>
+            has been assigned to<br><strong>{{ data['allocated-officer'] }}</strong>
           </div>
         </div><br><br>
 
         <h2 class="govuk-heading-m">What happens next</h2>
 
         <p class="govuk-body">
-          You will need to contact your admin to make this allocation on the system.
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Details of this allocation have been added to nDelius automatically</li>
+            <li>You will need to contact <strong>{{ data['allocated-officer'] }}</strong> to inform them of the allocation</li>
+            <li>The deadline for the induction interview is <strong>18 May 2021</strong>
+
         </p>
 
         <p><a href="unallocated-cases">View unallocated cases</a></p>
