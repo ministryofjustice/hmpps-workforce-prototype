@@ -50,7 +50,7 @@ Faraz Haynes | Overview | Workforce planning
       
       <div class="govuk-grid-column-one-quarter">
         <div class="card card-total-subset {{ data['contracted-colour'] }}">
-          <span class="card__heading">{{ data['contracted-capacity'] }}%</span>
+          <span class="card__heading">{{ data['contracted-capacity'] | default("88") }}%</span>
           <p>capacity</p>
         </div>
       </div>
@@ -112,7 +112,7 @@ Faraz Haynes | Overview | Workforce planning
               Contracted hours
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['contracted-hours'] }}
+              {{ data['contracted-hours'] | default("37") }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link govuk-link--no-visited-state" href="officer-view-contracted">
@@ -125,7 +125,7 @@ Faraz Haynes | Overview | Workforce planning
               Reductions
             </dt>
             <dd class="govuk-summary-list__value">
-              8.00 hours until {{ data['reduction-end-day'] }}/{{ data['reduction-end-month'] }}/{{ data['reduction-end-year'] }}
+              8.00 hours until {{ data['reduction-end-day'] | default("15") }} {{ data['reduction-end-month'] | default("01") | toMonth }} {{ data['reduction-end-year'] | default("2022") }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link govuk-link--no-visited-state" href="officer-view-reductions">
@@ -138,7 +138,7 @@ Faraz Haynes | Overview | Workforce planning
               Last case allocated
             </dt>
             <dd class="govuk-summary-list__value">
-              22 January 2021 (Tier B2, on licence in community)
+              10 May 2021 (Tier B2, on licence in community)
             </dd>
             <dd class="govuk-summary-list__actions">
 
@@ -149,7 +149,7 @@ Faraz Haynes | Overview | Workforce planning
               Cases due to end within next 4 weeks
             </dt>
             <dd class="govuk-summary-list__value">
-              9
+              2
             </dd>
             <dd class="govuk-summary-list__actions">
 
@@ -161,7 +161,7 @@ Faraz Haynes | Overview | Workforce planning
               Releases within next 4 weeks
             </dt>
             <dd class="govuk-summary-list__value">
-              1
+              0
             </dd>
             <dd class="govuk-summary-list__actions">
               
@@ -173,7 +173,7 @@ Faraz Haynes | Overview | Workforce planning
               Parole reports to complete within next 4 weeks
             </dt>
             <dd class="govuk-summary-list__value">
-              4
+              1
             </dd>
             <dd class="govuk-summary-list__actions">
 
@@ -203,14 +203,16 @@ Faraz Haynes | Overview | Workforce planning
     <h3 class="govuk-heading-m">Specialist areas</h3>
     <ul class="govuk-list govuk-list--bullet">
       <li>Integrated Offender Management (IOM)</li> 
-      <li>Serious Group Offending (SGO)</li> 
+      <li>Serious Group Offending (SGO)</li>
     </ul>
     
 
     <h3 class="govuk-heading-m">Completed training</h3>
     <ul class="govuk-list govuk-list--bullet">
+      <li>ARMS</li>
       <li>Domestic abuse</li>
-      <li>Virtual inductions</li> 
+      <li>SARA</li>
+      <li>Sex Offender</li>
     </ul>
     
   </div>
