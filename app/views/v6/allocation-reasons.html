@@ -48,7 +48,7 @@ Allocation reasons | Workforce planning
 <form action="allocation-complete" method="post" novalidate>
   <div class="govuk-form-group">
     <label class="govuk-label" for="more-detail">
-      Why are you allocating {{ data['allocated-officer'] }} to this case?
+      Why are you allocating {{ data['allocated-officer'] | default("Officer Name") }} to this case?
     </label>
     <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5"></textarea>
   </div>

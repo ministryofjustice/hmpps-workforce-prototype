@@ -53,7 +53,7 @@ Allocation confirmation | Workforce planning
             Case reference number<br><strong>J678910</strong>
           </div>
           <div class="govuk-panel__body">
-            has been assigned to<br><strong>{{ data['allocated-officer'] }}</strong>
+            has been assigned to<br><strong>{{ data['allocated-officer'] | default("Officer Name") }}</strong>
           </div>
         </div><br><br>
 
