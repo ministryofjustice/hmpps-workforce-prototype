@@ -101,7 +101,7 @@ Faraz Haynes | Reductions | Workforce planning
             <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="reduction-hours">
               Hours
             </label></h1>
-            <input class="govuk-input govuk-date-input__input govuk-input--width-3" id="reduction-hours" name="reduction-hours" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['reduction-hours'] }}"></div>
+            <input class="govuk-input govuk-date-input__input govuk-input--width-3" id="reduction-hours" name="reduction-hours" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['reduction-hours'] | default('4.50') }}"></div>
         </div>
       </div>
 
@@ -122,21 +122,21 @@ Faraz Haynes | Reductions | Workforce planning
                 <label class="govuk-label govuk-date-input__label" for="reduction-start-day">
                   Day
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="reduction-start-day" name="reduction-start-day" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['reduction-start-day'] }}"></div>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="reduction-start-day" name="reduction-start-day" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['reduction-start-day']| default('15')  }}"></div>
             </div>
             <div class="govuk-date-input__item">
               <div class="govuk-form-group">
                 <label class="govuk-label govuk-date-input__label" for="reduction-start-month">
                   Month
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="reduction-start-month" name="reduction-start-month" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['reduction-start-month'] }}"></div>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="reduction-start-month" name="reduction-start-month" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['reduction-start-month'] | default('01') }}"></div>
             </div>
             <div class="govuk-date-input__item">
               <div class="govuk-form-group">
                 <label class="govuk-label govuk-date-input__label" for="reduction-start-year">
                   Year
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="reduction-start-year" name="reduction-start-year" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['reduction-start-year'] }}"></div>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="reduction-start-year" name="reduction-start-year" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['reduction-start-year'] | default('2021') }}"></div>
             </div>
           </div>
         </fieldset>
@@ -160,21 +160,21 @@ Faraz Haynes | Reductions | Workforce planning
                 <label class="govuk-label govuk-date-input__label" for="reduction-end-day">
                   Day
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="reduction-end-day" name="reduction-end-day" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['reduction-end-day'] }}"></div>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="reduction-end-day" name="reduction-end-day" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['reduction-end-day'] | default('15') }}"></div>
             </div>
             <div class="govuk-date-input__item">
               <div class="govuk-form-group">
                 <label class="govuk-label govuk-date-input__label" for="reduction-end-month">
                   Month
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="reduction-end-month" name="reduction-end-month" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['reduction-end-month'] }}"></div>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="reduction-end-month" name="reduction-end-month" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['reduction-end-month'] | default('01') }}"></div>
             </div>
             <div class="govuk-date-input__item">
               <div class="govuk-form-group">
                 <label class="govuk-label govuk-date-input__label" for="reduction-end-year">
                   Year
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="reduction-end-year" name="reduction-end-year" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['reduction-end-year'] }}"></div>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="reduction-end-year" name="reduction-end-year" type="text" pattern="[0-9]*" inputmode="numeric" value="{{ data['reduction-end-year'] | default('2022') }}"></div>
             </div>
           </div>
         </fieldset>

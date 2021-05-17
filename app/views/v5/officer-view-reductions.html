@@ -61,9 +61,9 @@ Faraz Haynes | Reductions | Workforce planning
       <tbody class="govuk-table__body">
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">Other</td>
-          <td class="govuk-table__cell">{{ data['reduction-hours'] }}</td>
-          <td class="govuk-table__cell">{{ data['reduction-start-day'] }}/{{ data['reduction-start-month'] }}/{{ data['reduction-start-year'] }}</td>
-          <td class="govuk-table__cell">{{ data['reduction-end-day'] }}/{{ data['reduction-end-month'] }}/{{ data['reduction-end-year'] }}</td>
+          <td class="govuk-table__cell">{{ data['reduction-hours'] | default("4.50") }}</td>
+          <td class="govuk-table__cell">{{ data['reduction-start-day'] | default("15") }}/{{ data['reduction-start-month'] | default("01") }}/{{ data['reduction-start-year'] | default("2021") }}</td>
+          <td class="govuk-table__cell">{{ data['reduction-end-day'] | default("15") }}/{{ data['reduction-end-month'] | default("01") }}/{{ data['reduction-end-year'] | default("2022") }}</td>
           <td class="govuk-table__cell">
             <a class="govuk-link--no-visited-state" href="officer-view-reduction-edit">Edit</a><br>
             <a class="govuk-link" href="officer-view-reduction-archive">Archive</a><br>
