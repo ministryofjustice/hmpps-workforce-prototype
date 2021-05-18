@@ -5,6 +5,22 @@
 Unallocated cases | Southampton Team 1 | Workforce planning
 {% endblock %}
 
+{% block beforeContent %}
+<div class="govuk-breadcrumbs ">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">All regions</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">NPS South Central Division</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Hampshire South West</a>
+    </li>
+  </ol>
+</div>
+{% endblock %}
+
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
@@ -18,10 +34,6 @@ Unallocated cases | Southampton Team 1 | Workforce planning
     <nav class="moj-sub-navigation" aria-label="Sub navigation">
 
       <ul class="moj-sub-navigation__list">
-        <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link" href="team-view">Overview</a>
-        </li>
-
         <li class="moj-sub-navigation__item">
           <a class="moj-sub-navigation__link govuk-link--no-visited-state" aria-current="page" href="#"><span id="notifications" class="moj-notification-badge">3</span> Unallocated cases</a>
         </li>
