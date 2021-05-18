@@ -44,7 +44,14 @@
 }
 
 .moj-primary-navigation__link[aria-current]:before {
-  background-color: #5a5c92;
+  background-color: govuk-colour('blue');
+}
+
+.moj-primary-navigation__link {
+  &:link,
+  &:visited {
+    color:  govuk-colour('blue');
+  }
 }
 
 .rosh-highlight {
