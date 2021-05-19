@@ -55,6 +55,10 @@
 
 {% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %}
 
+{% block beforeContent %}
+  {% include "includes/breadcrumbs.html" %}
+{% endblock %}
+
 {% if useAutoStoreData %}
   {% block footer %}
     {% include "includes/footer.html" %}
