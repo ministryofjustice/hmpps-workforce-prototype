@@ -21,7 +21,12 @@ $moj-assets-path: '/public/';
 @import "../../views/allocations/0/partial/key-details-bar/template";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
-@import "hmpps/pics"; // wholesale styles from PICS team service
-@import "hmpps/capacity";
+// @import "hmpps/pics"; // wholesale styles from PICS team service
+
+@import "hmpps/global"; // styles that affect all screens
+@import "hmpps/index"; // Prototpye index page styles
+@import "hmpps/capacity"; // components used to display capacity info
+@import "hmpps/case"; // case-specific styles
+@import "hmpps/team-view"; // rules for the team overview screens
 @import "hmpps/sirius"; // OPG styles for service user due dates
-@import "hmpps/risk"; // recreation of Figma designs from ARN team
+@import "hmpps/risk"; // rules ot allow recreation of Figma designs from ARN team
