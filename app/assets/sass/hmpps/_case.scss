@@ -76,3 +76,16 @@
         line-height: 1.25;
     }
 }
+
+
+// Allocate to OM button
+.button-link {
+  background: none;
+  border: 0;
+  color: govuk-colour('blue');
+  font-family: 'GDS Transport', Arial, sans-serif;
+  font-size: 1.1875rem;
+  line-height: 1.14286;
+  padding: 0;
+  text-decoration: underline;
+}

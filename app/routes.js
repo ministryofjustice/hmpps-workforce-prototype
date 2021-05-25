@@ -26,4 +26,14 @@ router.post('/allocate-handler', function (req, res) {
 })
 
 
+router.post('/allocation-check', function (req, res) {
+  let officer = req.session.data['allocated-officer']
+
+  if (officer === '') {
+    res.redirect('/v7/case-allocate-error')
+  }  else {
+    res.redirect('/v7/allocation-confirm')
+  }
+})
+
 module.exports = router

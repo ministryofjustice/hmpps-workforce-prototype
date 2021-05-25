@@ -15,7 +15,7 @@ Allocation impact | Workforce planning
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    <span style="float:left; width: 71px; height: 71px; padding :10px; margin-right: 10px; background-color: #1d70b8; color: white; font-size: 60px; font-weight: 800;">C1</span><h1 class="govuk-heading-xl govuk-!-margin-bottom-2">Dylan Adam Armstrong<span class="workforce-grade">CRN: J678910</span></h1>    
+    <span style="float:left; width: 71px; height: 71px; padding :10px; margin-right: 10px; background-color: #1d70b8; color: white; font-size: 60px; font-weight: 800;">{{ data['tier'] | default("C1") }}</span><h1 class="govuk-heading-xl govuk-!-margin-bottom-2">{{ data['pop-name'] | default("Dylan Adam Armstrong") }}<span class="workforce-grade">CRN: {{ data['pop-crn'] | default("J678910") }}</span></h1>    
   </div>
 </div>
 
@@ -48,7 +48,7 @@ Allocation impact | Workforce planning
       <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
       <strong class="govuk-warning-text__text">
         <span class="govuk-warning-text__assistive">Warning</span>
-        Allocating this case will change the capacity score of {{ data['allocated-officer'] }} from 90% to 98%.
+        Allocating this case will change the capacity score of {{ data['allocated-officer'] | default("Molly O\'Sullivan") }} from 90% to 98%.
       </strong>
     </div>
       <div class="govuk-button-group">
