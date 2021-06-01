@@ -163,6 +163,11 @@
   color: govuk-colour('red');
 }
 
+.percentage-extra-over {
+  color: govuk-colour('red');
+  font-weight: 800;
+}
+
 //* Hide content meant only for screen readers */
 .sr-only {
   height: 1px;

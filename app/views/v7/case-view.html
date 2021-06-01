@@ -15,7 +15,7 @@ J678910 | Overview | Workforce planning
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    <span style="float:left; width: 71px; height: 71px; padding :10px; margin-right: 10px; background-color: #1d70b8; color: white; font-size: 60px; font-weight: 800;">{{ data['tier'] | default("C1") }}</span><h1 class="govuk-heading-xl govuk-!-margin-bottom-2">{{ data['pop-name'] | default("Dylan Adam Armstrong") }}<span class="workforce-grade">CRN: {{ data['pop-crn'] | default("J678910") }}</span></h1>    
+    <span style="float:left; width: 71px; height: 71px; padding :10px; margin-right: 10px; background-color: #1d70b8; color: white; font-size: 60px; font-weight: 800;">{{ data['tier'] | default("C1") }}</span><h1 class="govuk-heading-xl govuk-!-margin-bottom-2"><span class="govuk-caption-xl">CRN: {{ data['pop-crn'] | default("J678910") }}</span>{{ data['pop-name'] | default("Dylan Adam Armstrong") }}</h1>    
   </div>
 </div>
 
@@ -53,13 +53,13 @@ J678910 | Overview | Workforce planning
         <div class="key-details-bar__top-block">
           <span class="govuk-body key-details-bar_divider"><strong>PCN:</strong> 2012/123400000F</span>
           <span class="govuk-body key-details-bar_divider"><strong>Gender:</strong> Male</span>
-          <span class="govuk-body"><strong>Date of birth:</strong> 27 Sep 1984 (36 years)</span>
+          <span class="govuk-body key-details-bar_divider"><strong>Date of birth:</strong> 27 Sep 1984 (36 years)</span>
+          <span class="govuk-body key-details-bar_divider"><strong>Ethnicity:</strong> Caucasian</span>
+          <span class="govuk-body"><strong>Religion:</strong> Atheist</span>
           <div class="key-details-bar__bottom-block govuk-!-margin-bottom-6">
             
           </div>
-          <button class="govuk-button govuk-button--secondary" data-module="govuk-button" style="color: black;">
-          View full details on nDelius
-          </button>
+
       </div>
     </section>
 
