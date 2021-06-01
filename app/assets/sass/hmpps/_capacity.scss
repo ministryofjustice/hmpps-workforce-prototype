@@ -160,11 +160,12 @@
 }
 
 .percentage-over {
-  color: govuk-colour('orange');
+  color: govuk-colour('red');
 }
 
 .percentage-extra-over {
   color: govuk-colour('red');
+  font-weight: 800;
 }
 
 //* Hide content meant only for screen readers */
