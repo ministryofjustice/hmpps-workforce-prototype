@@ -5,6 +5,7 @@ const routesAllocations0 = require('./routes/allocationsV0.js')
 const v3 = require('./routes/v3.js')
 const v6 = require('./routes/v6.js')
 const v7 = require('./routes/v7.js')
+const v8 = require('./routes/v8.js')
 
 // Add your routes here - above the module.exports line
 router.use('/allocations/0', routesAllocations0)
@@ -13,14 +14,15 @@ router.use('/allocations/0', routesAllocations0)
 router.use('/v3', v3)
 router.use('/v6', v6)
 router.use('/v7', v7)
+router.use('/v8', v8)
 
 router.post('/allocate-handler', function (req, res) {
   var allocated = req.session.data['selected']
   if (allocated == "yes") {
-    res.redirect('/v7/allocation-complete')
+    res.redirect('/v8/allocation-complete')
   }
   else {
-    res.redirect('/v7/allocation-error')
+    res.redirect('/v8/allocation-error')
   }
 
 })
