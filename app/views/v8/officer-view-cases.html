@@ -22,28 +22,10 @@ Faraz Haynes | Active cases | Workforce planning
   </div>
 </div>
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
-
-    <nav class="moj-sub-navigation" aria-label="Sub navigation">
-
-      <ul class="moj-sub-navigation__list">
-        <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="./">Overview</a>
-        </li>
-        <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link govuk-link--no-visited-state" aria-current="page" href="#">Active cases</a>
-        </li>
-        <!--<li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="#">Contracted hours</a>
-        </li>
-        <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link govuk-link--no-visited-state"  href="#">Reductions</a>
-        </li>-->
-      </ul>
-    </nav>
-  </div>
-</div>
+{% set currentPage = 2 %}
+{% block subNav %}
+  {% include "./partials/officer-view-nav.html" %}
+{% endblock %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">

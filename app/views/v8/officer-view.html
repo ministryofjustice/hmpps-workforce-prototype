@@ -16,25 +16,14 @@
   <div class="govuk-grid-column-full">
     <span class="govuk-caption-xl">Southampton Team 1</span>
     {% set gradeDescriptions = {PO: 'Probation Officer', PSO: 'Probation Service Officer', NQO: 'Newly Qualified Officer', PQiP: 'Trainee Probation Officer', SPO: 'Senior Probation Officer'} %}
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">{{ probationPractitioner.name }} <span class="workforce-grade">{{ gradeDescriptions[probationPractitioner.grade] }}</span></h1>    
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">{{ probationPractitioner.name }} <span class="workforce-grade">{{ gradeDescriptions[probationPractitioner.grade] }}</span></h1>
   </div>
 </div>
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
-    <nav class="moj-sub-navigation" aria-label="Sub navigation">
-
-      <ul class="moj-sub-navigation__list">
-        <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link govuk-link--no-visited-state" aria-current="page">Overview</a>
-        </li>
-        <li class="moj-sub-navigation__item">
-          <a class="moj-sub-navigation__link govuk-link--no-visited-state" href="{{ url }}/officer-view-cases">Active cases</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</div>
+{% set currentPage = 1 %}
+{% block subNav %}
+{% include "./partials/officer-view-nav.html" %}
+{% endblock %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
@@ -63,7 +52,7 @@
     <!--<div class="workforce-progress-container">
       <div class="workforce-progress-bar" style="width:98%"><p>98%<span style="visibility: hidden;">capacity</span></p></div>
     </div>-->
-    
+
     <details class="govuk-details" data-module="govuk-details">
       <summary class="govuk-details__summary">
         <span class="govuk-details__summary-text">
@@ -165,7 +154,7 @@
               {{ sentencesDueToEnd.length }}
             </dd>
             <dd class="govuk-summary-list__actions">
-              
+
             </dd>
           </div>
 
@@ -181,7 +170,7 @@
             </dd>
           </div>
 
-         
+
         </dl>
   </div>
 
@@ -205,15 +194,15 @@
      <h3 class="govuk-heading-m">Specialist areas</h3>
     <ul class="govuk-list govuk-list--bullet">
       {% for specialistArea in probationPractitioner.specialistAreas %}
-        <li>{{ specialistArea }}</li> 
+        <li>{{ specialistArea }}</li>
       {% endfor %}
     </ul>
 
      <h3 class="govuk-heading-m">Completed training</h3>
     <ul class="govuk-list govuk-list--bullet">
       {% for completedTrainingItem in probationPractitioner.completedTraining %}
-        <li>{{ completedTrainingItem }}</li> 
-      {% endfor %} 
+        <li>{{ completedTrainingItem }}</li>
+      {% endfor %}
     </ul>
   </div>
 </div>
