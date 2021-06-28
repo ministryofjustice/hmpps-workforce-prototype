@@ -1,4 +1,3 @@
-const { get } = require('browser-sync')
 const express = require('express')
 const router = express.Router()
 const routesAllocations0 = require('./routes/allocationsV0.js')
@@ -18,23 +17,20 @@ router.use('/v8', v8)
 
 router.post('/allocate-handler', function (req, res) {
   var allocated = req.session.data['selected']
-  if (allocated == "yes") {
+  if (allocated === 'yes') {
     res.redirect('/v8/allocation-complete')
-  }
-  else {
+  } else {
     res.redirect('/v8/allocation-error')
   }
-
 })
-
 
 router.post('/allocation-check', function (req, res) {
   let officer = req.session.data['allocated-officer']
 
   if (officer === '') {
-    res.redirect('/v7/case-allocate-error')
-  }  else {
-    res.redirect('/v7/allocation-confirm')
+    res.redirect('/v8/case-allocate-error')
+  } else {
+    res.redirect('/v8/allocation-confirm')
   }
 })
 
