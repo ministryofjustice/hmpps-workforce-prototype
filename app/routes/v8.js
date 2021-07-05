@@ -20,6 +20,7 @@ router.get('/officer-view/:id', ({ params: { id } }, res) => {
   const probationPractitioner = getPractitioner(id, team)
   Object.assign(res.locals, {
     probationPractitioner,
+    id: id,
     casesDueToEnd: getCasesDueToEnd(probationPractitioner),
     sentencesDueToEnd: getSentencesDueToEnd(probationPractitioner),
     paroleReportsDue: getParoleReportsDue(probationPractitioner),
@@ -29,6 +30,7 @@ router.get('/officer-view/:id', ({ params: { id } }, res) => {
 
 router.get('/officer-view/:id/officer-view-cases', ({ params: { id } }, res) => {
   res.locals.probationPractitioner = getPractitioner(id, team)
+  res.locals.id = id
   res.render('v8/officer-view-cases')
 })
 
