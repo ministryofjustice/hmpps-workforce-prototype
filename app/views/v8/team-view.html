@@ -25,7 +25,8 @@ Southampton Team 1 | Overview | Workforce planning
     </nav>
 
   </div>
-</div>
+</div>  
+
 
 <div class="govuk-grid-row govuk-!-margin-bottom-9">
   <div class="govuk-grid-column-full">
@@ -40,6 +41,13 @@ Southampton Team 1 | Overview | Workforce planning
           <p class="govuk-!-margin-bottom-5">total cases</p>
         </div>
       </div>
+      <div class="govuk-grid-column-one-quarter">
+        <div class="card card-total">
+          <span class="card__heading" style="color: #1d70b8;">{{ teamTotals.community + teamTotals.licence }}</span>
+          <p>community cases</p>
+          <p>(<strong>{{ teamTotals.licence }}</strong> on licence)</p>
+        </div>
+      </div>
 
       <div class="govuk-grid-column-one-quarter">
         <div class="card card-total">
@@ -48,13 +56,6 @@ Southampton Team 1 | Overview | Workforce planning
         </div>
       </div>
 
-      <div class="govuk-grid-column-one-quarter">
-        <div class="card card-total">
-          <span class="card__heading" style="color: #1d70b8;">{{ teamTotals.community + teamTotals.licence }}</span>
-          <p>community cases</p>
-          <p>(<strong>{{ teamTotals.licence }}</strong> on licence)</p>
-        </div>
-      </div>
     </div>
 
   </div>
@@ -91,7 +92,7 @@ Southampton Team 1 | Overview | Workforce planning
 
                 <td class="govuk-table__cell govuk-table__cell--numeric{% if probationPractitioner.capacity > 99 %} percentage-extra-over{% endif %}" data-sort-value="{{ probationPractitioner.capacity }}">{{ probationPractitioner.capacity }}%</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ probationPractitioner.allocationsInLast7.length }}">{{ probationPractitioner.allocationsInLast7.length }}</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ probationPractitioner.totals.community }}">{{ probationPractitioner.totals.community }}</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ probationPractitioner.totals.community }}">{{ probationPractitioner.totals.community + probationPractitioner.totals.licence }}</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ probationPractitioner.totals.custody }}">{{ probationPractitioner.totals.custody }}</td>
               </tr>
             {% endfor %}
