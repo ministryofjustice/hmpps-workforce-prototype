@@ -13,7 +13,7 @@ const {
 const team = generateTeam(12, 'N57BRP', 'N57A')
 
 router.use('*', (req, { locals }, next) => {
-  Object.assign(locals, { team, teamTotals: getTeamTotals(team), url: req.originalUrl, versionUrl: '/_mvp', moment: moment })
+  Object.assign(locals, { team, teamTotals: getTeamTotals(team), url: req.originalUrl, versionUrl: '/_mvp', moment: moment, longDateFormat: 'D MMMM YYYY' })
   next()
 })
 

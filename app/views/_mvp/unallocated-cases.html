@@ -71,7 +71,7 @@ Unallocated cases | Southampton Team 1 | Workforce planning
                 </ul>
               </td>
               <td class="govuk-table__cell due-date">
-                <span class="date overdue">{{ moment().add(1, 'days').format('D MMMM YYYY') }}</span>
+                <span class="date overdue">{{ moment().add(1, 'days').format(longDateFormat) }}</span>
                 <span class="secondary overdue">Due tomorrow</span>
               </td>
               <td class="govuk-table__cell">
@@ -106,7 +106,7 @@ Unallocated cases | Southampton Team 1 | Workforce planning
                 </ul>
               </td>
               <td class="govuk-table__cell due-date">
-                <span class="date due">{{ moment().add(2, 'days').format('D MMMM YYYY') }}</span>
+                <span class="date due">{{ moment().add(2, 'days').format(longDateFormat) }}</span>
                 <span class="secondary due">Due in 2 days</span>
               </td>
               <td class="govuk-table__cell">
