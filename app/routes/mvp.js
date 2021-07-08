@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const moment = require('moment')
 const { generateTeam } = require('../data/generateData')
 const {
   getTeamTotals,
@@ -12,7 +13,7 @@ const {
 const team = generateTeam(12, 'N57BRP', 'N57A')
 
 router.use('*', (req, { locals }, next) => {
-  Object.assign(locals, { team, teamTotals: getTeamTotals(team), url: req.originalUrl, versionUrl: '/_mvp' })
+  Object.assign(locals, { team, teamTotals: getTeamTotals(team), url: req.originalUrl, versionUrl: '/_mvp', moment: moment })
   next()
 })
 
