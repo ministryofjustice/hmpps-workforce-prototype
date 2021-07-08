@@ -12,7 +12,7 @@ const {
 const team = generateTeam(12, 'N57BRP', 'N57A')
 
 router.use('*', (req, { locals }, next) => {
-  Object.assign(locals, { team, teamTotals: getTeamTotals(team), url: req.originalUrl, versionUrl: '/_mvp' })
+  Object.assign(locals, { team, teamTotals: getTeamTotals(team), url: req.originalUrl, versionUrl: '/_mvp', shortDateFormat: 'DD/MM/YYYY' })
   next()
 })
 
@@ -32,6 +32,12 @@ router.get('/officer-view/:id/officer-view-cases', ({ params: { id } }, res) => 
   res.locals.probationPractitioner = getPractitioner(id, team)
   res.locals.id = id
   res.render('_mvp/officer-view-cases')
+})
+
+router.get('/officer-view/:id/reductions', ({ params: { id } }, res) => {
+  res.locals.probationPractitioner = getPractitioner(id, team)
+  res.locals.id = id
+  res.render('_mvp/officer-view-reductions')
 })
 
 router.post('/allocate-handler', function (req, res) {
