@@ -37,7 +37,6 @@ router.get('/officer-view/:id/officer-view-cases', ({ params: { id } }, res) => 
 router.get('/officer-view/:id/contracted-hours', ({ params: { id } }, res) => {
   res.locals.probationPractitioner = getPractitioner(id, team)
   res.locals.id = id
-  console.info(res.locals.probationPractitioner)
   res.render('_mvp/officer-view-contracted')
 })
 
