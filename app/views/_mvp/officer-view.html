@@ -1,6 +1,5 @@
 {% extends "layout_workforce-nav.html" %}
 
-
 {% block pageTitle %}
 {{ probationPractitioner.name }} | Overview | Workforce planning
 {% endblock %}
@@ -33,7 +32,7 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-one-quarter">
         <div class="card card-total">
-          <a href="officer-view-cases" class="govuk-link--no-visited-state"><span class="card__heading">{{ probationPractitioner.totals.total }}</span>
+          <a href="{{versionUrl}}/officer-view/{{id}}/officer-view-cases" class="govuk-link--no-visited-state"><span class="card__heading">{{ probationPractitioner.totals.total }}</span>
           <p>total cases</p></a>
         </div>
       </div>
