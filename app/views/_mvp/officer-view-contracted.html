@@ -14,7 +14,8 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <span class="govuk-caption-xl">Southampton Team 1</span>
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">{{ probationPractitioner.name }} <span class="workforce-grade">Probation Officer</span></h1>
+    {% set gradeDescriptions = {PO: 'Probation Officer', PSO: 'Probation Service Officer', NQO: 'Newly Qualified Officer', PQiP: 'Trainee Probation Officer', SPO: 'Senior Probation Officer'} %}
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">{{ probationPractitioner.name }}<span class="workforce-grade">{{ gradeDescriptions[probationPractitioner.grade] }}</span></h1>
   </div>
 </div>
 
@@ -28,7 +29,7 @@
     <h2 class="govuk-heading-l">Contracted hours</h2>
     <p class="card__heading govuk-!-padding-bottom-9">{{ probationPractitioner.contractedHours }}</p>
 
-    <form action="officer-confirm-hours" method="post" novalidate>
+    <form action="" method="post" novalidate>
       <div class="govuk-form-group">
         <h3 class="govuk-label-wrapper">
           <label class="govuk-label govuk-label--s" for="event-name">
@@ -41,7 +42,7 @@
           Continue
         </button>
 
-        <a class="govuk-link" href="officer-view">Cancel</a>
+        <a class="govuk-link govuk-link--no-visited-state" href="{{versionUrl}}/officer-view/{{id}}">Cancel</a>
       </div>
     </form>
   </div>
