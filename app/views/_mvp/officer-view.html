@@ -1,4 +1,10 @@
+{%- set tiers = ["A", "B1", "B2", "C1", "C2", "D1", "D2", "E", "F", "G"] -%}
+
 {% extends "layout_workforce-nav.html" %}
+
+{% block headScripts %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+{% endblock %}
 
 {% block pageTitle %}
 {{ probationPractitioner.name }} | Overview | Workforce planning
@@ -175,11 +181,11 @@
   <div class="govuk-grid-column-one-third">
     <h3 class="govuk-heading-m">Case mix</h3>
     <figure style="margin: 0;" class="govuk-!-padding-bottom-4">
-      <img src="/public/images/casemix.png" alt="Visual representation of types of active casework">
+      <div id="piechart" style="width: 256px; height: 256px;"></div>
       <figcaption class="visually-hidden sr-only">Pie chart showing breakdown of different case types</figcaption>
     </figure>
     <ul class="govuk-list">
-    {% set tiers = ["A", "B1", "B2", "C1", "C2", "D1", "D2", "E", "F", "G"] %}
+
     {% for tier in tiers %}
       {% if probationPractitioner.totals[tier] %}
         <li><span class="caseload-swatch tier-{{ tier }}"></span>Tier {{ tier }}: {{ probationPractitioner.totals[tier] }}</li>
@@ -203,5 +209,72 @@
 -->
   </div>
 </div>
+
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  var hexDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
+
+  function rgb2hex(rgb) {
+    rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+    return '#' + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+  }
+
+  function hex(x) {
+    return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
+  }
+
+  function drawChart() {
+
+    var data = google.visualization.arrayToDataTable([
+      ['Case mix', 'Types'],
+      {% for tier in tiers %}
+        {% if probationPractitioner.totals[tier] %}
+          ['{{ tier }}', {{ probationPractitioner.totals[tier] }}],
+        {% endif %}
+      {% endfor %}
+    ]);
+
+    var swatch;
+    var css;
+    var swatches = [];
+
+    {% for tier in tiers %}
+      {% if probationPractitioner.totals[tier] %}
+        swatch = document.getElementsByClassName('tier-{{ tier }}');
+        css = window.getComputedStyle(swatch[0]).getPropertyValue('background-color');
+        swatches.push(rgb2hex(css))
+      {% endif %}
+    {% endfor %}
+
+    var slices = {}
+    for (var i = 0; i < swatches.length; i ++) {
+      slices[i] = { color: swatches[i] }
+    }
+
+    var options = {
+      legend: 'none',
+      enableInteractivity: false,
+      pieSliceText: 'none',
+      width: 256,
+      heightL: 256,
+      slices: slices,
+      chartArea: {
+        backgroundColor: {
+          stroke: 'black',
+          strokeWidth: 5
+        },
+        width: '100%',
+        height: '100%',
+        left: 0,
+        top: 0
+      }
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    chart.draw(data, options);
+  }
+</script>
 
 {% endblock %}
