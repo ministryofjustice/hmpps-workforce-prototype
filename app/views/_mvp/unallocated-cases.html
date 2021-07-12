@@ -9,7 +9,7 @@ Unallocated cases | Southampton Team 1 | Workforce planning
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <span class="govuk-caption-xl">Hampshire South West</span>
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">Southampton Team 1</h1> 
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">Southampton Team 1</h1>
   </div>
 </div>
 
@@ -23,7 +23,7 @@ Unallocated cases | Southampton Team 1 | Workforce planning
         </li>
       </ul>
     </nav>
-    
+
   </div>
 </div>
 
@@ -46,14 +46,14 @@ Unallocated cases | Southampton Team 1 | Workforce planning
               <th scope="col" class="govuk-table__header" aria-sort="none">Action</th>
             </tr>
           </thead>
-      
+
           <tbody class="govuk-table__body">
             <tr class="govuk-table__row">
               <td class="govuk-table__cell">
                 <strong>Dylan Adam Armstrong</strong><span class="govuk-body-s" style="display: block;">J678910</span>
               </td>
               <td class="govuk-table__cell">
-                Current
+                Managed
               </td>
               <td class="govuk-table__cell">
                 SE14 3PU
@@ -71,7 +71,7 @@ Unallocated cases | Southampton Team 1 | Workforce planning
                 </ul>
               </td>
               <td class="govuk-table__cell due-date">
-                <span class="date overdue">22 July 2021</span>
+                <span class="date overdue">{{ moment().add(1, 'days').format(longDateFormat) }}</span>
                 <span class="secondary overdue">Due tomorrow</span>
               </td>
               <td class="govuk-table__cell">
@@ -83,12 +83,12 @@ Unallocated cases | Southampton Team 1 | Workforce planning
 
             <tr class="govuk-table__row">
               <td class="govuk-table__cell">
-                <!--<span class="govuk-tag govuk-tag--pink">Known</span> --><span class="sr-only">to probation</span><strong>Andrei Edwards</strong>
+                <span class="sr-only">to probation</span><strong>Andrei Edwards</strong>
                 <span class="govuk-body-s" style="display: block;">J680648</span>
 
               </td>
               <td class="govuk-table__cell">
-                No record
+                Current
               </td>
               <td class="govuk-table__cell">
                 SO14 0AL
@@ -101,27 +101,17 @@ Unallocated cases | Southampton Team 1 | Workforce planning
                   <li class="yep">Court outcome</li>
                   <li class="nope">Court order</li>
                   <li class="nope">Pre-convictions</li>
-                  <li class="yep">Pre-sentence report</li>
+                  <li class="nope">Pre-sentence report</li>
                   <li class="nope">CPS pack</li>
                 </ul>
               </td>
               <td class="govuk-table__cell due-date">
-                <span class="date due">23 July 2021</span>
+                <span class="date due">{{ moment().add(2, 'days').format(longDateFormat) }}</span>
                 <span class="secondary due">Due in 2 days</span>
               </td>
               <td class="govuk-table__cell">
                 <ul class="govuk-list">
-                  <li><a class="govuk-link--no-visited-state" href="#">Review case</a></li>
-                  <li>
-
-                  <!--<form id="my_form" action="allocation-confirm" method="post" novalidate>
-                    <input type="hidden" name="tier" value="C2">
-                    <input type="hidden" name="pop-name" value="Andrei Edwards">
-                    <input type="hidden" name="pop-crn" value="J680648">
-                    <a href="javascript:{}" onclick="document.getElementById('my_form').submit();">Allocate current OM</a>
-                  </form>-->
-
-                  </li>
+                  <li><a class="govuk-link--no-visited-state" href="case-view-new">Review case</a></li>
                 </ul>
               </td>
             </tr>
@@ -153,7 +143,7 @@ Unallocated cases | Southampton Team 1 | Workforce planning
               </td>
               <td class="govuk-table__cell">
                 <ul class="govuk-list">
-                  <li><a class="govuk-link--no-visited-state" href="#">Review case</a></li>
+                  <li><a class="govuk-link--no-visited-state" href="case-view-previous">Review case</a></li>
                 </ul>
               </td>
             </tr>

@@ -1,5 +1,10 @@
+{%- set tiers = ["A", "B1", "B2", "C1", "C2", "D1", "D2", "E", "F", "G"] -%}
+
 {% extends "layout_workforce-nav.html" %}
 
+{% block headScripts %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+{% endblock %}
 
 {% block pageTitle %}
 {{ probationPractitioner.name }} | Overview | Workforce planning
@@ -12,13 +17,10 @@
 {% endblock %}
 
 {% block content %}
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
-    <span class="govuk-caption-xl">Southampton Team 1</span>
-    {% set gradeDescriptions = {PO: 'Probation Officer', PSO: 'Probation Service Officer', NQO: 'Newly Qualified Officer', PQiP: 'Trainee Probation Officer', SPO: 'Senior Probation Officer'} %}
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">{{ probationPractitioner.name }} <span class="workforce-grade">{{ gradeDescriptions[probationPractitioner.grade] }}</span></h1>
-  </div>
-</div>
+
+{% block officerTitle %}
+{% include "./partials/officer-view-title.html" %}
+{% endblock %}
 
 {% set currentPage = 1 %}
 {% block subNav %}
@@ -33,7 +35,7 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-one-quarter">
         <div class="card card-total">
-          <a href="officer-view-cases" class="govuk-link--no-visited-state"><span class="card__heading">{{ probationPractitioner.totals.total }}</span>
+          <a href="{{versionUrl}}/officer-view/{{id}}/officer-view-cases" class="govuk-link--no-visited-state"><span class="card__heading">{{ probationPractitioner.totals.total }}</span>
           <p>total cases</p></a>
         </div>
       </div>
@@ -105,8 +107,8 @@
               {{ probationPractitioner.contractedHours }}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">
-                Edit<span class="govuk-visually-hidden"> name</span>
+              <a class="govuk-link" href="{{versionUrl}}/officer-view/{{id}}/contracted-hours">
+                Edit<span class="govuk-visually-hidden"> contracted hours</span>
               </a>
             </dd>
           </div>
@@ -118,8 +120,8 @@
               {{ probationPractitioner.totalReductions }} hours until {{ probationPractitioner.nextChange.format('Do MMM YY') }}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">
-                Edit<span class="govuk-visually-hidden"> name</span>
+              <a class="govuk-link"  href="{{versionUrl}}/officer-view/{{id}}/reductions">
+                Edit<span class="govuk-visually-hidden"> reductions</span>
               </a>
             </dd>
           </div>
@@ -179,11 +181,11 @@
   <div class="govuk-grid-column-one-third">
     <h3 class="govuk-heading-m">Case mix</h3>
     <figure style="margin: 0;" class="govuk-!-padding-bottom-4">
-      <img src="/public/images/casemix.png" alt="Visual representation of types of active casework">
+      <div id="piechart" style="width: 256px; height: 256px;"></div>
       <figcaption class="visually-hidden sr-only">Pie chart showing breakdown of different case types</figcaption>
     </figure>
     <ul class="govuk-list">
-    {% set tiers = ["A", "B1", "B2", "C1", "C2", "D1", "D2", "E", "F", "G"] %}
+
     {% for tier in tiers %}
       {% if probationPractitioner.totals[tier] %}
         <li><span class="caseload-swatch tier-{{ tier }}"></span>Tier {{ tier }}: {{ probationPractitioner.totals[tier] }}</li>
@@ -207,5 +209,72 @@
 -->
   </div>
 </div>
+
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  var hexDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
+
+  function rgb2hex(rgb) {
+    rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+    return '#' + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+  }
+
+  function hex(x) {
+    return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
+  }
+
+  function drawChart() {
+
+    var data = google.visualization.arrayToDataTable([
+      ['Case mix', 'Types'],
+      {% for tier in tiers %}
+        {% if probationPractitioner.totals[tier] %}
+          ['{{ tier }}', {{ probationPractitioner.totals[tier] }}],
+        {% endif %}
+      {% endfor %}
+    ]);
+
+    var swatch;
+    var css;
+    var swatches = [];
+
+    {% for tier in tiers %}
+      {% if probationPractitioner.totals[tier] %}
+        swatch = document.getElementsByClassName('tier-{{ tier }}');
+        css = window.getComputedStyle(swatch[0]).getPropertyValue('background-color');
+        swatches.push(rgb2hex(css))
+      {% endif %}
+    {% endfor %}
+
+    var slices = {}
+    for (var i = 0; i < swatches.length; i ++) {
+      slices[i] = { color: swatches[i] }
+    }
+
+    var options = {
+      legend: 'none',
+      enableInteractivity: false,
+      pieSliceText: 'none',
+      width: 256,
+      heightL: 256,
+      slices: slices,
+      chartArea: {
+        backgroundColor: {
+          stroke: 'black',
+          strokeWidth: 5
+        },
+        width: '100%',
+        height: '100%',
+        left: 0,
+        top: 0
+      }
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    chart.draw(data, options);
+  }
+</script>
 
 {% endblock %}

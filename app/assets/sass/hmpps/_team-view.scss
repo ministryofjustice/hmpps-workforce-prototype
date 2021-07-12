@@ -1,9 +1,4 @@
-// Match cards
-
 .card {
-    font-family: "GDS Transport", Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     font-weight: 400;
     font-size: 14px;
     font-size: 0.875rem;
@@ -16,29 +11,25 @@
     background-color: #fff;
     border: 1px solid #0b0c0c;
     max-width: 960px;
+    font-family: "GDS Transport",arial,sans-serif;
 }
+
 .card p {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .card-total p {
-    color:$govuk-brand-colour;
+  color: $govuk-brand-colour;
 }
+
 .card-total-subset p {
-    color: white;
+  color: white;
 }
+
 .card-total-subset {
     background-color: $govuk-brand-colour;
     color: #fff;
     border:none;
-}
-.card-todo {
-    background-color: $govuk-error-colour;
-    color: #fff;
-    border: none;
-}
-.card-todo a:link, .card-todo a:visited  {
-    color: #fff;
 }
 
 .card__heading {
@@ -51,44 +42,8 @@
 .card__attributes {
     display: inline-block;
 }
-.card dd:last-of-type {
-    border: 0;
-}
-.card dd {
-    border-right: 1px solid rgba(255, 255, 255, 0.3);
-    margin: 0 10px 0 0;
-    padding: 0 30px 0 0;
-}
-.card dt, .card dd {
-    font-family: "GDS Transport", Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-weight: 400;
-    font-size: 16px;
-    font-size: 1rem;
-    line-height: 1.25;
-    color: #0b0c0c;
-    float: left;
-    margin-right: 5px;
-}
-.card dt {
-    font-weight: bold;
-}
-@media (min-width: 40.0625em) {
-.card dt, .card dd {
-    font-size: 19px;
-    font-size: 1.1875rem;
-    line-height: 1.31579;
-    }
-}
-// @media (min-width: 48.0625em) {
-// .card {
-//     margin: 15px 0;
-//     padding: 20px 15px;
-//     margin-bottom: 20px;
-//     padding-bottom: 10px;
-// }
-// }
+
+
 @media (min-width: 40.0625em) {
 .card {
     font-size: 16px;

@@ -36,6 +36,8 @@
 
 {% block head %}
   {% include "includes/head.html" %}
+  {% block headScripts %}
+  {% endblock %}
 {% endblock %}
 
 {% block pageTitle %}
@@ -44,10 +46,10 @@
 
 {% block header %}
   {% include "includes/cookie-banner.html" %}
-  {# Set serviceName in config.js. #} 
+  {# Set serviceName in config.js. #}
 
   {% include "includes/moj-header.html" %}
-  
+
 <!-- Add banner here -->
 {% include "includes/primary-nav.html" %}
 
