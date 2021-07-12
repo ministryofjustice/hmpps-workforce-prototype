@@ -1,6 +1,5 @@
 {% extends "layout_workforce-nav.html" %}
 
-
 {% block pageTitle %}
 Southampton Team 1 | Overview | Workforce planning
 {% endblock %}
@@ -15,8 +14,8 @@ Southampton Team 1 | Overview | Workforce planning
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    <nav class="moj-sub-navigation" aria-label="Sub navigation">
 
+    <nav class="moj-sub-navigation" aria-label="Sub navigation">
       <ul class="moj-sub-navigation__list">
         <li class="moj-sub-navigation__item">
           <a class="moj-sub-navigation__link govuk-link--no-visited-state" aria-current="page" href="#">Overview</a>
@@ -25,8 +24,7 @@ Southampton Team 1 | Overview | Workforce planning
     </nav>
 
   </div>
-</div>  
-
+</div>
 
 <div class="govuk-grid-row govuk-!-margin-bottom-9">
   <div class="govuk-grid-column-full">
@@ -65,7 +63,6 @@ Southampton Team 1 | Overview | Workforce planning
 
     <h2 class="govuk-heading-l">Current workload</h2>
 
-
     <div class="moj-scrollable-pane">
       <div class="moj-scrollable-pane__wrapper">
         <table class="govuk-table govuk-table-xl" data-module="moj-sortable-table">
@@ -73,12 +70,10 @@ Southampton Team 1 | Overview | Workforce planning
             <tr class="govuk-table__row">
               <th scope="col" class="govuk-table__header" aria-sort="Ascending">Name</th>
               <th scope="col" class="govuk-table__header" aria-sort="none">Grade</th>
-
               <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="Ascending">Capacity</th>
               <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none">Allocations in past 7 days</th>
               <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none">Community cases</th>
               <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none">Custody cases</th>
-
             </tr>
           </thead>
           <tbody class="govuk-table__body">
@@ -89,7 +84,6 @@ Southampton Team 1 | Overview | Workforce planning
                 {% set gradeDescription = gradeDescriptions[probationPractitioner.grade] %}
                 <td class="govuk-table__cell" data-sort-value="{{ gradeDescription }}">
                 <div class="tooltip">{{ probationPractitioner.grade }}<span class="tooltiptext">{{ gradeDescription }}</span></div></td>
-
                 <td class="govuk-table__cell govuk-table__cell--numeric{% if probationPractitioner.capacity > 99 %} percentage-extra-over{% endif %}" data-sort-value="{{ probationPractitioner.capacity }}">{{ probationPractitioner.capacity }}%</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ probationPractitioner.allocationsInLast7.length }}">{{ probationPractitioner.allocationsInLast7.length }}</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="{{ probationPractitioner.totals.community }}">{{ probationPractitioner.totals.community + probationPractitioner.totals.licence }}</td>

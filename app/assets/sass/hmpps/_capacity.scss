@@ -156,7 +156,7 @@
 }
 
 .over-capacity {
-  background-color: govuk-colour('red');
+  background-color: govuk-colour('red') !important;
 }
 
 .percentage-over {
