@@ -79,7 +79,7 @@ Faraz Haynes | Overview | Workforce planning
                 </div>
               </div>
             </td>
-            <td class="govuk-table__cell"><a href="officer-view/{{ probationPractitioner.OM_Key }}">{{ probationPractitioner.name }}</a></td>
+            <td class="govuk-table__cell"><a class="" href="officer-view/{{ probationPractitioner.OM_Key }}">{{ probationPractitioner.name }}</a></td>
             {% set gradeDescription = gradeDescriptions[probationPractitioner.grade] %}
             <td class="govuk-table__cell" data-sort-value="{{ gradeDescription }}">
             <div class="tooltip">{{ probationPractitioner.grade }}<span class="tooltiptext">{{ gradeDescription }}</span></div></td>
