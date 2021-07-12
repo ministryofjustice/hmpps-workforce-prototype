@@ -39,30 +39,27 @@ router.get('/officer-view/:id', ({ params: { id }, session }, res) => {
   res.render('_mvp/officer-view')
 })
 
-router.get('/officer-view/:id/officer-view-cases', ({ params: { id }, session }, res) => {
+
+function updateLocals(res, id, session) {
   const probationPractitioner = !session[id] ? getPractitioner(id, team) : session[id].probationPractitioner
   Object.assign(res.locals, {
     probationPractitioner,
     id: id
   })
+}
+
+router.get('/officer-view/:id/officer-view-cases', ({ params: { id }, session }, res) => {
+  updateLocals(res, id, session)
   res.render('_mvp/officer-view-cases')
 })
 
 router.get('/officer-view/:id/reductions', ({ params: { id }, session }, res) => {
-  const probationPractitioner = !session[id] ? getPractitioner(id, team) : session[id].probationPractitioner
-  Object.assign(res.locals, {
-    probationPractitioner,
-    id: id
-  })
+  updateLocals(res, id, session)
   res.render('_mvp/officer-view-reductions')
 })
 
 router.get('/officer-view/:id/contracted-hours', ({ params: { id }, session }, res) => {
-  const probationPractitioner = !session[id] ? getPractitioner(id, team) : session[id].probationPractitioner
-  Object.assign(res.locals, {
-    probationPractitioner,
-    id: id
-  })
+  updateLocals(res, id, session)
   res.render('_mvp/officer-view-contracted')
 })
 
